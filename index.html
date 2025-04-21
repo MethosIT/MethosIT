@@ -4,65 +4,74 @@
     <meta charset="UTF-8">
     <title>Scarica gli orari</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
     <style>
-        /* Reset minimale */
-        *{box-sizing:border-box;margin:0;padding:0}
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
-        body{
-            font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
-            background:#f3f4f6;                 /* grigio chiaro */
-            display:flex;
-            flex-direction:column;
-            justify-content:flex-start;
-            align-items:center;
-            min-height:100vh;
-            padding:2rem 1rem;
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+            padding: 2rem 1rem;
+            animation: fadeIn 1s ease;
         }
 
-        /* ⬇️ LOGO */
-        .logo{
-            width:220px;          /* regola a piacere */
-            max-width:80%;
-            height:auto;
-            margin-bottom:32px;
-            filter:drop-shadow(0 2px 6px rgba(0,0,0,.15));
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        /* ⬇️ BOTTONI */
-        a.btn{
-            display:block;
-            width:100%;
-            max-width:340px;
-            margin:12px 0;
-            padding:18px 24px;
-            font-size:1.25rem;
-            text-align:center;
-            text-decoration:none;
-            color:#fff;
-            background:#2563eb;                /* blu acceso */
-            border-radius:14px;
-            box-shadow:0 4px 10px rgba(0,0,0,.12);
-            transition:transform .12s ease;
+        .logo {
+            width: 220px;
+            max-width: 80%;
+            height: auto;
+            margin-bottom: 40px;
+            filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3));
+            border-radius: 14px;
         }
-        a.btn:active{transform:scale(.97)}
-        @media(min-width:500px){a.btn{font-size:1.35rem}}
+
+        .btn {
+            display: block;
+            width: 100%;
+            max-width: 340px;
+            margin: 14px 0;
+            padding: 18px 24px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-align: center;
+            text-decoration: none;
+            color: #ffffff;
+            background: #ff5f6d; /* warm gradient red/pink */
+            background: linear-gradient(to right, #ff5f6d, #ffc371);
+            border-radius: 16px;
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+        }
+
+        @media (min-width: 500px) {
+            .btn { font-size: 1.35rem; }
+        }
     </style>
 </head>
 <body>
 
-    <!-- LOGO: sostituisci LOGOID con l’ID dell’immagine su Drive -->
-    <!-- LOGO locale -->
-<img class="logo" src="LogoThouraz.jpg" alt="Logo Thouraz">
+    <!-- Sostituisci LOGO.png con il tuo file locale o da CDN -->
+    <img class="logo" src="LogoThouraz.jpg" alt="Logo Thouraz">
 
-    <!-- PDF 1 -->
-    <a class="btn" href="TESTOrario1.pdf" download>Prima delle 22</a>
-
-    <!-- PDF 2 -->
-<a class="btn" href="TESTOrario2.pdf" download>Dopo le 22</a>
-
-    <!-- PDF 3 -->
-<a class="btn" href="TESTOrario3.pdf" download>Dopo l’01:00</a>
+    <!-- Bottoni per scaricare i PDF -->
+    <a class="btn" href="TESTOrario1.pdf" download>Prima delle 10</a>
+    <a class="btn" href="TESTOrario2.pdf" download>Dopo le 10</a>
+    <a class="btn" href="TESTOrario3.pdf" download>Dopo l’01:00</a>
 
 </body>
 </html>
