@@ -3,37 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <title>Scarica gli orari</title>
-    <!-- rende la pagina “responsive” su smartphone -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <style>
-        /* reset minimale */
+        /* Reset minimale */
         *{box-sizing:border-box;margin:0;padding:0}
 
         body{
             font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
-            background:#f3f4f6;               /* grigio chiaro */
+            background:#f3f4f6;                 /* grigio chiaro */
             display:flex;
             flex-direction:column;
-            justify-content:center;
+            justify-content:flex-start;
             align-items:center;
             min-height:100vh;
-            padding:1rem;
+            padding:2rem 1rem;
         }
 
+        /* ⬇️ LOGO */
+        .logo{
+            width:220px;          /* regola a piacere */
+            max-width:80%;
+            height:auto;
+            margin-bottom:32px;
+            filter:drop-shadow(0 2px 6px rgba(0,0,0,.15));
+        }
+
+        /* ⬇️ BOTTONI */
         a.btn{
             display:block;
             width:100%;
             max-width:340px;
             margin:12px 0;
             padding:18px 24px;
-            font-size:1.25rem;               /* 20 px circa */
+            font-size:1.25rem;
             text-align:center;
             text-decoration:none;
             color:#fff;
-            background:#2563eb;              /* blu acceso */
+            background:#2563eb;                /* blu acceso */
             border-radius:14px;
             box-shadow:0 4px 10px rgba(0,0,0,.12);
-            transition:transform .1s ease;
+            transition:transform .12s ease;
         }
         a.btn:active{transform:scale(.97)}
         @media(min-width:500px){a.btn{font-size:1.35rem}}
@@ -41,23 +51,28 @@
 </head>
 <body>
 
-    <!-- 1️⃣ Sostituisci FILEID1 con l’ID reale del PDF su Drive -->
+    <!-- LOGO: sostituisci LOGOID con l’ID dell’immagine su Drive -->
+    <img class="logo"
+         src="https://drive.google.com/uc?export=view&id=LOGOID"
+         alt="Logo Thouraz">
+
+    <!-- PDF 1 -->
     <a class="btn"
-       href="https://drive.google.com/uc?export=download&id=FILEID1"
+       href="https://drive.google.com/uc?export=download&id=PDFID1"
        target="_blank" rel="noopener">
        Prima delle 10
     </a>
 
-    <!-- 2️⃣ Sostituisci FILEID2 -->
+    <!-- PDF 2 -->
     <a class="btn"
-       href="https://drive.google.com/uc?export=download&id=FILEID2"
+       href="https://drive.google.com/uc?export=download&id=PDFID2"
        target="_blank" rel="noopener">
        Dopo le 10
     </a>
 
-    <!-- 3️⃣ Sostituisci FILEID3 -->
+    <!-- PDF 3 -->
     <a class="btn"
-       href="https://drive.google.com/uc?export=download&id=FILEID3"
+       href="https://drive.google.com/uc?export=download&id=PDFID3"
        target="_blank" rel="noopener">
        Dopo l’01:00
     </a>
