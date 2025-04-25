@@ -45,11 +45,11 @@
         }
 
         /* LOGO */
-        . .logo {
-            width: 200px;           /* slightly smaller */
-            max-width: 70%;         /* allow more flexibility on small screens */
+        .logo {
+            width: clamp(140px, 35vw, 220px); /* never smaller than 140 px or larger than 220 px */
             height: auto;
-            margin: 0 0 1rem;      /* reduced vertical space */
+            max-height: 160px;                /* extra safety for very tall images */
+            margin: 0 0 1rem;                 /* reduced vertical space */
             filter: drop-shadow(0 6px 14px var(--shadow));
             border-radius: 14px;
         }
