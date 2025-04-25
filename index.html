@@ -6,68 +6,98 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+        /* RESET & GLOBALS */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            /* Elegant dusk palette */
+            --bg-start: #0f2027;   /* deep teal‑navy */
+            --bg-mid:   #203a43;   /* denim */
+            --bg-end:   #2c5364;   /* midnight blue */
+
+            --accent-start: #b38e5d; /* warm antique gold */
+            --accent-end:   #e3c88b; /* light champagne */
+
+            --text-main: #f8f9fa;   /* very light grey */
+            --shadow: rgba(0, 0, 0, 0.25);
+        }
 
         body {
             font-family: 'Montserrat', sans-serif;
-            background: linear-gradient(135deg, #1e3c72, #2a5298);
-            color: #fff;
+            background: linear-gradient(135deg, var(--bg-start) 0%, var(--bg-mid) 50%, var(--bg-end) 100%);
+            color: var(--text-main);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: flex-start;
             min-height: 100vh;
             padding: 2rem 1rem;
-            animation: fadeIn 1s ease;
+            animation: fadeIn 0.9s ease;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from { opacity: 0; transform: translateY(12px); }
+            to   { opacity: 1; transform: translateY(0); }
         }
 
+        /* LOGO */
         .logo {
             width: 220px;
             max-width: 80%;
             height: auto;
-            margin-bottom: 30px;
-            filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.3));
+            margin-bottom: 2rem;
+            filter: drop-shadow(0 6px 14px var(--shadow));
             border-radius: 14px;
         }
 
+        /* INTRO TEXT */
         .intro {
-            max-width: 600px;
+            max-width: 620px;
             text-align: center;
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             line-height: 1.6;
-            margin-bottom: 30px;
+            margin-bottom: 2.2rem;
         }
 
+        /* BUTTONS */
         .btn {
             display: block;
             width: 100%;
             max-width: 340px;
             margin: 14px 0;
-            padding: 18px 24px;
-            font-size: 1.2rem;
+            padding: 1.1rem 1.5rem;
+            font-size: 1.15rem;
             font-weight: 600;
             text-align: center;
             text-decoration: none;
-            color: #ffffff;
-            background: #ff5f6d;
-            background: linear-gradient(to right, #ff5f6d, #ffc371);
+            color: var(--text-main);
+            background: linear-gradient(to right, var(--accent-start), var(--accent-end));
             border-radius: 16px;
-            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 6px 16px var(--shadow);
+            transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
         }
 
         .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 22px rgba(0, 0, 0, 0.35);
+            filter: brightness(1.05);
         }
 
+        /* SMALL TEXT INSIDE BUTTONS */
+        .btn small {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 400;
+            opacity: 0.85;
+        }
+
+        /* RESPONSIVE TYPING */
         @media (min-width: 500px) {
-            .btn { font-size: 1.35rem; }
+            .btn { font-size: 1.25rem; }
         }
     </style>
 </head>
