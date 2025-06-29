@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Come funziona il sistema dei listini | Thouraz Pub</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root{
+            --bg-start:#0f2027; --bg-mid:#203a43; --bg-end:#2c5364;
+            --accent-start:#b38e5d; --accent-end:#e3c88b;
+            --text-main:#f8f9fa; --shadow:rgba(0,0,0,0.25);
+        }
+        *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+        body{
+            font-family:'Montserrat',sans-serif;
+            background:linear-gradient(135deg,var(--bg-start),var(--bg-mid) 50%,var(--bg-end));
+            color:var(--text-main);display:flex;flex-direction:column;
+            align-items:center;min-height:100vh;padding:2rem 1rem;line-height:1.6
+        }
+        h1{font-size:1.8rem;margin-bottom:1rem;text-align:center}
+        p{max-width:720px;margin:0.8rem auto}
+        ul{max-width:720px;margin:0.8rem auto 1.6rem 1.2rem}
+        li{margin:0.4rem 0}
+        .btn{
+            display:inline-block;padding:0.9rem 1.4rem;margin-top:2rem;
+            font-size:1.1rem;font-weight:600;color:var(--text-main);
+            background:linear-gradient(to right,var(--accent-start),var(--accent-end));
+            border-radius:14px;text-decoration:none;box-shadow:0 6px 16px var(--shadow);
+            transition:transform 0.18s ease,box-shadow 0.18s ease
+        }
+        .btn:hover{transform:translateY(-3px);box-shadow:0 10px 22px rgba(0,0,0,.35)}
+    </style>
+</head>
+<body>
+
+    <h1>Come funziona il sistema dei listini</h1>
+
+    <p>Per offrirti sempre il miglior rapporto qualità-prezzo, al Thouraz Pub
+       applichiamo <strong>quattro listini diversi</strong> a seconda dell’orario in cui
+       entri nel locale.  Una volta scelto il tavolo e convalidato l’ingresso,
+       <em>il listino resta fisso e garantito per tutta la serata</em>, anche se l’orario
+       dovesse cambiare nel frattempo.</p>
+
+    <ul>
+        <li><strong>Listino Pomeridiano</strong> – valido per entrate <u>entro le 20:00</u>.</li>
+        <li><strong>Listino Promozione</strong> – entrate tra <u>20:00 e 22:00</u>.</li>
+        <li><strong>Listino Serale</strong> – entrate tra <u>22:00 e 01:00</u>.</li>
+        <li><strong>Listino Notturno</strong> – entrate <u>dopo l’01:00</u>.</li>
+    </ul>
+
+    <p>⚠️ Ricorda: il personale potrebbe chiederti di mostrare la conferma
+       dell’orario registrato all’ingresso in caso di dubbi.</p>
+
+    <!-- Pulsante di ritorno -->
+    <a class="btn" href="index.html">⬅ Torna ai listini</a>
+
+</body>
+</html>
