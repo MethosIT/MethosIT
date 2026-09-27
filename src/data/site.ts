@@ -1,3 +1,22 @@
+export const site = {
+  name: "Thouraz Pub",
+  founded: 1987,
+  address: {
+    street: "Via Astichello, 58",
+    postalCode: "36030",
+    city: "Montecchio Precalcino",
+    province: "VI",
+    country: "IT",
+  },
+  phoneDisplay: "+39 348 888 9533",
+  phoneHref: "tel:+393488889533",
+  whatsapp: "https://wa.me/393488889533",
+  email: "thourazpub@gmail.com",
+  instagram: "https://www.instagram.com/thourazpub/",
+  maps: "https://www.google.com/maps/search/?api=1&query=Thouraz+Pub%2C+Via+Astichello+58%2C+Montecchio+Precalcino",
+  hours: "20:00–04:00",
+} as const;
+
 export const menuLinks = [
   {
     label: "Entro le 20:00",
