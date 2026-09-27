@@ -1,0 +1,889 @@
+---
+import { site } from "../data/site";
+
+interface Props {
+  lang: "it" | "en";
+}
+
+const { lang } = Astro.props;
+const isIt = lang === "it";
+
+const copy = isIt
+  ? {
+      navExperience: "Esperienza",
+      navGelato: "Gelato",
+      navVisit: "Dove siamo",
+      menu: "Menu",
+      heroEyebrow: "DAL 1987 · MONTECCHIO PRECALCINO",
+      heroTitle: "Ogni cocktail comincia da una conversazione.",
+      heroText:
+        "Raccontaci cosa ti piace, cosa vuoi scoprire e come vuoi sentirti. Al Thouraz il cocktail nasce insieme a te, con cura, ascolto e ingredienti scelti.",
+      heroMenu: "Scopri i listini",
+      heroWhatsapp: "Prenota su WhatsApp",
+      statSince: "Dal",
+      statHours: "Ogni sera",
+      statPlace: "Montecchio Precalcino",
+      experienceEyebrow: "IL MODO THOURAZ",
+      experienceTitle: "Non scegliere solo un drink. Costruiscilo con noi.",
+      experienceText:
+        "Il rapporto con il cliente è parte della ricetta. Partiamo dai tuoi gusti — dolce, secco, fresco, intenso, speziato, analcolico — e troviamo insieme profumi, ingredienti e carattere del cocktail.",
+      experienceQuote:
+        "La cura non arriva dopo il prodotto: è il modo in cui il prodotto nasce.",
+      gelatoEyebrow: "GELATERIA ARTIGIANALE",
+      gelatoTitle: "Materie prime scelte. Gusto senza compromessi.",
+      gelatoText:
+        "I nostri gelati artigianali sono preparati con materie prime di alta qualità e sono tutti senza glutine e senza lattosio. Una proposta pensata con la stessa attenzione che mettiamo nei cocktail.",
+      gelatoNote: "Per allergie o esigenze specifiche, parlane sempre con il personale.",
+      spacesEyebrow: "IL LOCALE",
+      spacesTitle: "Una serata che può cambiare ritmo, senza cambiare posto.",
+      spacesText:
+        "Lounge, bancone e terrazza: spazi diversi per una serata tranquilla, un incontro tra amici o un drink fino a tardi.",
+      visitEyebrow: "VIENI A TROVARCI",
+      visitTitle: "Thouraz Pub",
+      hoursLabel: "Orari",
+      hoursValue: "Tutti i giorni · 20:00–04:00",
+      addressLabel: "Indirizzo",
+      phoneLabel: "Telefono",
+      reserveLabel: "Prenotazioni",
+      reserveValue: "Telefono o WhatsApp",
+      directions: "Apri in Google Maps",
+      call: "Chiama",
+      whatsapp: "WhatsApp",
+      instagram: "Instagram",
+      footer: "Cocktail su misura · Gelato artigianale · Dal 1987",
+      languageLabel: "EN",
+      languageHref: "/en",
+      languageAria: "English version",
+    }
+  : {
+      navExperience: "Experience",
+      navGelato: "Gelato",
+      navVisit: "Visit us",
+      menu: "Menu",
+      heroEyebrow: "SINCE 1987 · MONTECCHIO PRECALCINO",
+      heroTitle: "Every cocktail starts with a conversation.",
+      heroText:
+        "Tell us what you enjoy, what you want to discover and what kind of mood you are in. At Thouraz, your cocktail is created with you — through care, listening and carefully selected ingredients.",
+      heroMenu: "View the menus",
+      heroWhatsapp: "Book on WhatsApp",
+      statSince: "Since",
+      statHours: "Every evening",
+      statPlace: "Montecchio Precalcino",
+      experienceEyebrow: "THE THOURAZ WAY",
+      experienceTitle: "Don't just pick a drink. Create it with us.",
+      experienceText:
+        "The relationship with our guests is part of the recipe. We start from your tastes — sweet, dry, fresh, bold, spicy or alcohol-free — and choose aromas, ingredients and character together.",
+      experienceQuote:
+        "Care is not something added after the product: it is how the product begins.",
+      gelatoEyebrow: "ARTISAN GELATO",
+      gelatoTitle: "Selected ingredients. No compromise on flavour.",
+      gelatoText:
+        "Our artisan gelato is made with high-quality ingredients, and every flavour is gluten-free and lactose-free. The same attention we put into cocktails goes into every scoop.",
+      gelatoNote: "For allergies or specific dietary requirements, always speak with our staff.",
+      spacesEyebrow: "THE VENUE",
+      spacesTitle: "Change the pace of your evening without changing places.",
+      spacesText:
+        "Lounge areas, bar seating and terrace: different spaces for a quiet evening, drinks with friends or a late-night stop.",
+      visitEyebrow: "COME AND SEE US",
+      visitTitle: "Thouraz Pub",
+      hoursLabel: "Opening hours",
+      hoursValue: "Every day · 20:00–04:00",
+      addressLabel: "Address",
+      phoneLabel: "Phone",
+      reserveLabel: "Reservations",
+      reserveValue: "Phone or WhatsApp",
+      directions: "Open in Google Maps",
+      call: "Call",
+      whatsapp: "WhatsApp",
+      instagram: "Instagram",
+      footer: "Made-to-measure cocktails · Artisan gelato · Since 1987",
+      languageLabel: "IT",
+      languageHref: "/home",
+      languageAria: "Versione italiana",
+    };
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BarOrPub",
+  name: site.name,
+  url: "https://thourazpub.it/",
+  foundingDate: String(site.founded),
+  telephone: site.phoneDisplay,
+  email: site.email,
+  image: "https://thourazpub.it/images/hero.webp",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: site.address.street,
+    postalCode: site.address.postalCode,
+    addressLocality: site.address.city,
+    addressRegion: site.address.province,
+    addressCountry: site.address.country,
+  },
+  openingHours: "Mo-Su 20:00-04:00",
+  hasMenu: "https://thourazpub.it/menu",
+  sameAs: [site.instagram],
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+<header class="topbar">
+  <a class="brand" href={isIt ? "/home" : "/en"} aria-label="Thouraz Pub">
+    <img src="/LogoThouraz.png" alt="" />
+    <span>THOURAZ</span>
+  </a>
+
+  <nav aria-label={isIt ? "Navigazione principale" : "Main navigation"}>
+    <a href="#experience">{copy.navExperience}</a>
+    <a href="#gelato">{copy.navGelato}</a>
+    <a href="#visit">{copy.navVisit}</a>
+    <a class="menu-pill" href="/menu">{copy.menu}</a>
+    <a class="language" href={copy.languageHref} aria-label={copy.languageAria}>
+      {copy.languageLabel}
+    </a>
+  </nav>
+</header>
+
+<main>
+  <section class="hero">
+    <img
+      class="hero-image"
+      src="/images/hero.webp"
+      alt={isIt ? "Lounge del Thouraz Pub con cocktail" : "Thouraz Pub lounge with a cocktail"}
+      width="2200"
+      height="1238"
+      loading="eager"
+      fetchpriority="high"
+    />
+    <div class="hero-shade"></div>
+    <div class="hero-content">
+      <p class="eyebrow">{copy.heroEyebrow}</p>
+      <h1>{copy.heroTitle}</h1>
+      <p class="hero-copy">{copy.heroText}</p>
+      <div class="hero-actions">
+        <a class="button button-light" href="/menu">{copy.heroMenu}</a>
+        <a class="button button-glass" href={site.whatsapp} target="_blank" rel="noopener noreferrer">
+          {copy.heroWhatsapp}
+        </a>
+      </div>
+    </div>
+    <div class="hero-stats" aria-label={isIt ? "Informazioni rapide" : "Quick information"}>
+      <span><strong>{copy.statSince}</strong> {site.founded}</span>
+      <span><strong>{copy.statHours}</strong> {site.hours}</span>
+      <span><strong>{copy.statPlace}</strong></span>
+    </div>
+  </section>
+
+  <section id="experience" class="split-section section-shell">
+    <div class="portrait-frame">
+      <img
+        src="/images/bar.webp"
+        alt={isIt ? "Selezione di bottiglie al bancone" : "Bottle selection at the bar"}
+        width="1238"
+        height="2200"
+        loading="lazy"
+      />
+    </div>
+    <div class="section-copy">
+      <p class="eyebrow">{copy.experienceEyebrow}</p>
+      <h2>{copy.experienceTitle}</h2>
+      <p class="body-copy">{copy.experienceText}</p>
+      <p class="quote">{copy.experienceQuote}</p>
+    </div>
+  </section>
+
+  <section class="photo-break">
+    <img
+      src="/images/cocktail.webp"
+      alt={isIt ? "Cocktail personalizzato del Thouraz Pub" : "A personalised cocktail at Thouraz Pub"}
+      width="1469"
+      height="2200"
+      loading="lazy"
+    />
+    <div class="photo-break-copy">
+      <span>COCKTAIL</span>
+      <span>ASCOLTO</span>
+      <span>CURA</span>
+    </div>
+  </section>
+
+  <section id="gelato" class="gelato-section section-shell">
+    <div class="section-copy">
+      <p class="eyebrow">{copy.gelatoEyebrow}</p>
+      <h2>{copy.gelatoTitle}</h2>
+      <p class="body-copy">{copy.gelatoText}</p>
+      <p class="fine-print">{copy.gelatoNote}</p>
+    </div>
+    <div class="gelato-grid">
+      <figure class="gelato-main">
+        <img
+          src="/images/gelato.webp"
+          alt={isIt ? "Gelato artigianale del Thouraz Pub" : "Artisan gelato at Thouraz Pub"}
+          width="1238"
+          height="2200"
+          loading="lazy"
+        />
+      </figure>
+      <figure>
+        <img
+          src="/images/gelato-display.webp"
+          alt={isIt ? "Selezione di gelati artigianali" : "Selection of artisan gelato"}
+          width="2200"
+          height="1469"
+          loading="lazy"
+        />
+      </figure>
+    </div>
+  </section>
+
+  <section class="spaces section-shell">
+    <div class="spaces-heading">
+      <p class="eyebrow">{copy.spacesEyebrow}</p>
+      <h2>{copy.spacesTitle}</h2>
+      <p class="body-copy">{copy.spacesText}</p>
+    </div>
+
+    <div class="gallery">
+      <figure class="gallery-wide">
+        <img src="/images/interior.webp" alt={isIt ? "Interno del locale" : "Interior of the venue"} width="2200" height="1238" loading="lazy" />
+      </figure>
+      <figure>
+        <img src="/images/lounge.webp" alt={isIt ? "Lounge del Thouraz Pub" : "Thouraz Pub lounge"} width="1237" height="2200" loading="lazy" />
+      </figure>
+      <figure>
+        <img src="/images/cocktail2.webp" alt={isIt ? "Cocktail servito al Thouraz Pub" : "Cocktail served at Thouraz Pub"} width="1469" height="2200" loading="lazy" />
+      </figure>
+      <figure class="gallery-wide">
+        <img src="/images/terrace.webp" alt={isIt ? "Terrazza del Thouraz Pub" : "Thouraz Pub terrace"} width="2200" height="1571" loading="lazy" />
+      </figure>
+    </div>
+  </section>
+
+  <section id="visit" class="visit">
+    <div class="visit-inner">
+      <div class="visit-heading">
+        <p class="eyebrow">{copy.visitEyebrow}</p>
+        <h2>{copy.visitTitle}</h2>
+      </div>
+
+      <div class="info-grid">
+        <div class="info-block">
+          <span>{copy.hoursLabel}</span>
+          <strong>{copy.hoursValue}</strong>
+        </div>
+        <div class="info-block">
+          <span>{copy.addressLabel}</span>
+          <strong>{site.address.street}<br />{site.address.postalCode} {site.address.city} ({site.address.province})</strong>
+        </div>
+        <div class="info-block">
+          <span>{copy.phoneLabel}</span>
+          <strong>{site.phoneDisplay}</strong>
+        </div>
+        <div class="info-block">
+          <span>{copy.reserveLabel}</span>
+          <strong>{copy.reserveValue}</strong>
+        </div>
+      </div>
+
+      <div class="contact-actions">
+        <a class="button button-light" href={site.maps} target="_blank" rel="noopener noreferrer">{copy.directions}</a>
+        <a class="button button-outline" href={site.phoneHref}>{copy.call}</a>
+        <a class="button button-outline" href={site.whatsapp} target="_blank" rel="noopener noreferrer">{copy.whatsapp}</a>
+        <a class="button button-outline" href={site.instagram} target="_blank" rel="noopener noreferrer">{copy.instagram}</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <a class="footer-brand" href={isIt ? "/home" : "/en"}>
+    <img src="/LogoThouraz.png" alt="" />
+    <span>Thouraz Pub</span>
+  </a>
+  <p>{copy.footer}</p>
+  <p>© {new Date().getFullYear()} Thouraz Pub</p>
+</footer>
+
+<style>
+  :global(body) {
+    background: #0b0b0a;
+    color: #f3efe7;
+  }
+
+  :global(::selection) {
+    background: #b99763;
+    color: #10100f;
+  }
+
+  .topbar {
+    position: absolute;
+    inset: 0 0 auto;
+    z-index: 20;
+    width: min(100% - 2.2rem, 1280px);
+    margin: 0 auto;
+    padding: 1.4rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.2rem;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 800;
+    letter-spacing: .12em;
+    font-size: .86rem;
+  }
+
+  .brand img {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid rgba(255,255,255,.18);
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+  }
+
+  nav a {
+    color: rgba(255,255,255,.82);
+    font-size: .82rem;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  nav a:hover {
+    color: #fff;
+  }
+
+  .menu-pill,
+  .language {
+    border: 1px solid rgba(255,255,255,.28);
+    border-radius: 999px;
+    padding: .65rem .9rem;
+  }
+
+  .language {
+    min-width: 42px;
+    text-align: center;
+  }
+
+  .hero {
+    position: relative;
+    min-height: min(940px, 100svh);
+    display: grid;
+    align-items: end;
+    overflow: hidden;
+    background: #1a1411;
+  }
+
+  .hero-image,
+  .hero-shade {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .hero-image {
+    object-fit: cover;
+    object-position: 50% 55%;
+  }
+
+  .hero-shade {
+    background:
+      linear-gradient(180deg, rgba(5,5,5,.20) 0%, rgba(5,5,5,.12) 28%, rgba(5,5,5,.72) 78%, rgba(5,5,5,.96) 100%),
+      linear-gradient(90deg, rgba(5,5,5,.48), rgba(5,5,5,.03) 70%);
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    width: min(100% - 2.2rem, 1280px);
+    margin: 0 auto;
+    padding: 10rem 0 8.5rem;
+  }
+
+  .eyebrow {
+    margin: 0 0 1.1rem;
+    color: #d8bc8b;
+    font-size: .74rem;
+    font-weight: 800;
+    letter-spacing: .24em;
+  }
+
+  h1 {
+    max-width: 980px;
+    margin: 0;
+    font-size: clamp(3.3rem, 8.7vw, 8rem);
+    line-height: .91;
+    letter-spacing: -.06em;
+    text-wrap: balance;
+  }
+
+  .hero-copy {
+    max-width: 690px;
+    margin: 1.8rem 0 0;
+    color: rgba(255,255,255,.82);
+    font-size: clamp(1.04rem, 1.8vw, 1.3rem);
+    line-height: 1.7;
+  }
+
+  .hero-actions,
+  .contact-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .75rem;
+    margin-top: 2rem;
+  }
+
+  .button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding: .78rem 1.15rem;
+    border-radius: 999px;
+    text-decoration: none;
+    font-size: .88rem;
+    font-weight: 700;
+    transition: transform .18s ease, background .18s ease, border-color .18s ease;
+  }
+
+  .button:hover {
+    transform: translateY(-2px);
+  }
+
+  .button-light {
+    background: #f3efe7;
+    color: #141311;
+  }
+
+  .button-glass {
+    color: #fff;
+    border: 1px solid rgba(255,255,255,.32);
+    background: rgba(255,255,255,.08);
+    backdrop-filter: blur(14px);
+  }
+
+  .button-outline {
+    color: #f3efe7;
+    border: 1px solid rgba(243,239,231,.25);
+  }
+
+  .hero-stats {
+    position: absolute;
+    z-index: 3;
+    right: max(1.1rem, calc((100vw - 1280px) / 2));
+    bottom: 2rem;
+    display: flex;
+    gap: 1.4rem;
+    color: rgba(255,255,255,.68);
+    font-size: .72rem;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+  }
+
+  .hero-stats strong {
+    color: #fff;
+  }
+
+  .section-shell {
+    width: min(100% - 2.2rem, 1280px);
+    margin: 0 auto;
+  }
+
+  .split-section {
+    display: grid;
+    grid-template-columns: minmax(0, .82fr) minmax(0, 1.18fr);
+    gap: clamp(3rem, 8vw, 8rem);
+    align-items: center;
+    padding-top: clamp(5rem, 10vw, 9rem);
+    padding-bottom: clamp(5rem, 10vw, 9rem);
+  }
+
+  .portrait-frame {
+    height: min(72vw, 720px);
+    max-height: 720px;
+    overflow: hidden;
+    border-radius: 2px;
+  }
+
+  .portrait-frame img,
+  .gelato-grid img,
+  .gallery img,
+  .photo-break > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .section-copy {
+    max-width: 680px;
+  }
+
+  h2 {
+    margin: 0;
+    font-size: clamp(2.6rem, 5.5vw, 5.5rem);
+    line-height: .98;
+    letter-spacing: -.05em;
+    text-wrap: balance;
+  }
+
+  .body-copy {
+    margin: 1.7rem 0 0;
+    color: #bdb7ad;
+    font-size: clamp(1rem, 1.4vw, 1.15rem);
+    line-height: 1.8;
+  }
+
+  .quote {
+    margin: 2rem 0 0;
+    padding-left: 1.25rem;
+    border-left: 1px solid #b99763;
+    color: #e2d8c8;
+    font-size: 1.05rem;
+    line-height: 1.65;
+    font-style: italic;
+  }
+
+  .photo-break {
+    position: relative;
+    height: min(85vh, 880px);
+    overflow: hidden;
+    background: #15120f;
+  }
+
+  .photo-break > img {
+    object-position: center 48%;
+  }
+
+  .photo-break::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(5,5,5,.72), rgba(5,5,5,.04) 55%, rgba(5,5,5,.28));
+  }
+
+  .photo-break-copy {
+    position: absolute;
+    z-index: 2;
+    inset: auto 0 2.5rem;
+    width: min(100% - 2.2rem, 1280px);
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    color: rgba(255,255,255,.86);
+    font-size: clamp(.75rem, 1.2vw, .95rem);
+    font-weight: 800;
+    letter-spacing: .28em;
+  }
+
+  .gelato-section {
+    display: grid;
+    grid-template-columns: .85fr 1.15fr;
+    gap: clamp(3rem, 7vw, 7rem);
+    align-items: center;
+    padding-top: clamp(5rem, 10vw, 9rem);
+    padding-bottom: clamp(5rem, 10vw, 9rem);
+  }
+
+  .gelato-grid {
+    display: grid;
+    grid-template-columns: .9fr 1.1fr;
+    gap: .75rem;
+    align-items: end;
+  }
+
+  .gelato-grid figure {
+    margin: 0;
+    overflow: hidden;
+    min-height: 360px;
+  }
+
+  .gelato-main {
+    height: 620px;
+  }
+
+  .gelato-grid figure:not(.gelato-main) {
+    height: 430px;
+  }
+
+  .fine-print {
+    margin-top: 1.25rem;
+    color: #777168;
+    font-size: .75rem;
+    line-height: 1.6;
+  }
+
+  .spaces {
+    padding-top: 1rem;
+    padding-bottom: clamp(6rem, 11vw, 10rem);
+  }
+
+  .spaces-heading {
+    max-width: 860px;
+    margin-bottom: 3rem;
+  }
+
+  .gallery {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: .75rem;
+  }
+
+  .gallery figure {
+    margin: 0;
+    height: 560px;
+    overflow: hidden;
+  }
+
+  .gallery-wide {
+    grid-column: span 2;
+  }
+
+  .gallery-wide:first-child {
+    height: min(62vw, 700px);
+  }
+
+  .gallery-wide:last-child {
+    height: min(55vw, 620px);
+  }
+
+  .visit {
+    border-top: 1px solid rgba(255,255,255,.10);
+    background: #12110f;
+  }
+
+  .visit-inner {
+    width: min(100% - 2.2rem, 1280px);
+    margin: 0 auto;
+    padding: clamp(5rem, 10vw, 9rem) 0;
+  }
+
+  .visit-heading h2 {
+    font-size: clamp(3.4rem, 8vw, 7rem);
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    margin-top: 3.5rem;
+    background: rgba(255,255,255,.11);
+    border: 1px solid rgba(255,255,255,.11);
+  }
+
+  .info-block {
+    min-height: 170px;
+    padding: 1.35rem;
+    background: #12110f;
+  }
+
+  .info-block span {
+    display: block;
+    color: #8d877e;
+    font-size: .7rem;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+  }
+
+  .info-block strong {
+    display: block;
+    margin-top: 1rem;
+    color: #f3efe7;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  footer {
+    width: min(100% - 2.2rem, 1280px);
+    margin: 0 auto;
+    padding: 2.5rem 0 3rem;
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    align-items: center;
+    gap: 2rem;
+    color: #716c65;
+    font-size: .72rem;
+  }
+
+  .footer-brand {
+    display: flex;
+    align-items: center;
+    gap: .7rem;
+    color: #d4cec4;
+    text-decoration: none;
+    font-weight: 700;
+  }
+
+  .footer-brand img {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  footer p {
+    margin: 0;
+  }
+
+  @media (max-width: 900px) {
+    nav a:not(.menu-pill):not(.language) {
+      display: none;
+    }
+
+    .hero {
+      min-height: 900px;
+    }
+
+    .hero-content {
+      padding-bottom: 11rem;
+    }
+
+    .hero-stats {
+      left: 1.1rem;
+      right: 1.1rem;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      gap: .65rem 1.1rem;
+    }
+
+    .split-section,
+    .gelato-section {
+      grid-template-columns: 1fr;
+    }
+
+    .portrait-frame {
+      height: min(115vw, 680px);
+      order: 2;
+    }
+
+    .gelato-grid {
+      margin-top: 1rem;
+    }
+
+    .info-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (max-width: 620px) {
+    .topbar {
+      width: min(100% - 1.4rem, 1280px);
+      padding-top: .8rem;
+    }
+
+    .brand span {
+      display: none;
+    }
+
+    nav {
+      gap: .5rem;
+    }
+
+    .menu-pill,
+    .language {
+      padding: .58rem .72rem;
+    }
+
+    .hero {
+      min-height: 820px;
+    }
+
+    .hero-content,
+    .section-shell,
+    .visit-inner,
+    footer {
+      width: calc(100% - 1.4rem);
+    }
+
+    .hero-content {
+      padding-bottom: 10.5rem;
+    }
+
+    h1 {
+      font-size: clamp(3.15rem, 16vw, 5.2rem);
+    }
+
+    .hero-copy {
+      font-size: .98rem;
+      line-height: 1.65;
+    }
+
+    .hero-stats {
+      bottom: 1.3rem;
+    }
+
+    .split-section,
+    .gelato-section {
+      padding-top: 4.5rem;
+      padding-bottom: 4.5rem;
+      gap: 2.8rem;
+    }
+
+    h2 {
+      font-size: clamp(2.6rem, 12vw, 4rem);
+    }
+
+    .photo-break {
+      height: 680px;
+    }
+
+    .photo-break-copy {
+      width: calc(100% - 1.4rem);
+      flex-direction: column;
+      gap: .65rem;
+    }
+
+    .gelato-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .gelato-main,
+    .gelato-grid figure:not(.gelato-main) {
+      height: 430px;
+      min-height: 0;
+    }
+
+    .gallery {
+      grid-template-columns: 1fr;
+    }
+
+    .gallery figure,
+    .gallery-wide,
+    .gallery-wide:first-child,
+    .gallery-wide:last-child {
+      grid-column: auto;
+      height: 480px;
+    }
+
+    .gallery-wide:first-child,
+    .gallery-wide:last-child {
+      height: 330px;
+    }
+
+    .info-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .info-block {
+      min-height: 130px;
+    }
+
+    footer {
+      grid-template-columns: 1fr;
+      gap: .8rem;
+    }
+  }
+</style>
