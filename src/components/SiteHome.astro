@@ -430,6 +430,7 @@ const jsonLd = {
     line-height: .91;
     letter-spacing: -.06em;
     text-wrap: balance;
+    overflow-wrap: break-word;
   }
 
   .hero-copy {
@@ -801,7 +802,11 @@ const jsonLd = {
     }
 
     h1 {
-      font-size: clamp(3.15rem, 16vw, 5.2rem);
+      font-size: clamp(2.75rem, 12.5vw, 4.15rem);
+      line-height: .94;
+      letter-spacing: -.045em;
+      text-wrap: wrap;
+      overflow-wrap: anywhere;
     }
 
     .hero-copy {
@@ -828,31 +833,42 @@ const jsonLd = {
       height: 680px;
     }
 
-    .gelato-grid {
-      grid-template-columns: 1fr 1fr;
+    .gelato-grid,
+    .gallery {
+      display: flex;
+      gap: .75rem;
+      overflow-x: auto;
+      overflow-y: hidden;
+      scroll-snap-type: x mandatory;
+      scroll-padding-inline: 0;
+      overscroll-behavior-inline: contain;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      padding-bottom: .35rem;
     }
 
+    .gelato-grid::-webkit-scrollbar,
+    .gallery::-webkit-scrollbar {
+      display: none;
+    }
+
+    .gelato-grid figure,
     .gelato-main,
     .gelato-grid figure:not(.gelato-main) {
-      height: 430px;
+      flex: 0 0 84vw;
+      height: 500px;
       min-height: 0;
-    }
-
-    .gallery {
-      grid-template-columns: 1fr;
+      scroll-snap-align: start;
     }
 
     .gallery figure,
     .gallery-wide,
     .gallery-wide:first-child,
     .gallery-wide:last-child {
+      flex: 0 0 88vw;
       grid-column: auto;
-      height: 480px;
-    }
-
-    .gallery-wide:first-child,
-    .gallery-wide:last-child {
-      height: 330px;
+      height: 520px;
+      scroll-snap-align: start;
     }
 
     .info-grid {
