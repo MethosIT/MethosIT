@@ -198,11 +198,6 @@ const jsonLd = {
       height="2200"
       loading="lazy"
     />
-    <div class="photo-break-copy">
-      <span>COCKTAIL</span>
-      <span>ASCOLTO</span>
-      <span>CURA</span>
-    </div>
   </section>
 
   <section id="gelato" class="gelato-section section-shell">
@@ -294,9 +289,8 @@ const jsonLd = {
 </main>
 
 <footer>
-  <a class="footer-brand" href={isIt ? "/home" : "/en"}>
-    <img src="/LogoThouraz.png" alt="" />
-    <span>Thouraz Pub</span>
+  <a class="footer-brand" href={isIt ? "/home" : "/en"} aria-label="Thouraz Pub">
+    <img src="/LogoThouraz.png" alt="Thouraz Pub" />
   </a>
   <p>{copy.footer}</p>
   <p>© {new Date().getFullYear()} Thouraz Pub</p>
@@ -567,20 +561,6 @@ const jsonLd = {
     background: linear-gradient(90deg, rgba(5,5,5,.72), rgba(5,5,5,.04) 55%, rgba(5,5,5,.28));
   }
 
-  .photo-break-copy {
-    position: absolute;
-    z-index: 2;
-    inset: auto 0 2.5rem;
-    width: min(100% - 2.2rem, 1280px);
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    color: rgba(255,255,255,.86);
-    font-size: clamp(.75rem, 1.2vw, .95rem);
-    font-weight: 800;
-    letter-spacing: .28em;
-  }
-
   .gelato-section {
     display: grid;
     grid-template-columns: .85fr 1.15fr;
@@ -714,17 +694,15 @@ const jsonLd = {
   .footer-brand {
     display: flex;
     align-items: center;
-    gap: .7rem;
     color: #d4cec4;
     text-decoration: none;
-    font-weight: 700;
   }
 
   .footer-brand img {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    object-fit: cover;
+    width: 96px;
+    height: 54px;
+    object-fit: contain;
+    object-position: left center;
   }
 
   footer p {
@@ -832,12 +810,6 @@ const jsonLd = {
 
     .photo-break {
       height: 680px;
-    }
-
-    .photo-break-copy {
-      width: calc(100% - 1.4rem);
-      flex-direction: column;
-      gap: .65rem;
     }
 
     .gelato-grid {
