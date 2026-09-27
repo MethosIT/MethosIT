@@ -1,0 +1,205 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Thouraz Pub"
+  description="Thouraz Pub: locale, serate, menu, contatti e informazioni utili."
+>
+  <header class="nav">
+    <a class="brand" href="/home">
+      <img src="/LogoThouraz.png" alt="" />
+      <span>Thouraz Pub</span>
+    </a>
+    <nav>
+      <a href="/menu">Menu</a>
+      <a href="#locale">Il locale</a>
+      <a href="#contatti">Contatti</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <p class="eyebrow">THOURAZ PUB</p>
+      <h1>Un nuovo sito per raccontare il locale, non solo il menu.</h1>
+      <p class="lead">
+        Questa è la prima base Astro 7. Da qui costruiremo la homepage definitiva
+        con foto, storia, eventi, orari, contatti, mappa e accesso rapido ai listini.
+      </p>
+      <div class="actions">
+        <a class="primary" href="/menu">Apri i listini</a>
+        <a class="secondary" href="#locale">Scopri il progetto</a>
+      </div>
+    </section>
+
+    <section id="locale" class="section">
+      <div>
+        <p class="eyebrow">LA STRUTTURA</p>
+        <h2>Una base semplice da mantenere.</h2>
+      </div>
+      <div class="cards">
+        <article>
+          <h3>Il locale</h3>
+          <p>Storia, atmosfera, foto e cosa rende particolare il Thouraz.</p>
+        </article>
+        <article>
+          <h3>Menu & serate</h3>
+          <p>I listini restano accessibili subito, insieme a eventi e serate speciali.</p>
+        </article>
+        <article id="contatti">
+          <h3>Dove trovarci</h3>
+          <p>Orari, telefono, social, mappa e indicazioni per raggiungere il locale.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <style>
+    .nav {
+      width: min(100% - 2rem, 1180px);
+      margin: 0 auto;
+      padding: 1.2rem 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: .7rem;
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    .brand img {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      object-fit: cover;
+    }
+
+    nav {
+      display: flex;
+      gap: 1rem;
+      font-size: .9rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      opacity: .82;
+    }
+
+    nav a:hover {
+      opacity: 1;
+    }
+
+    .hero {
+      width: min(100% - 2rem, 1180px);
+      min-height: 72vh;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 5rem 0 7rem;
+    }
+
+    .eyebrow {
+      color: #e3c88b;
+      font-size: .78rem;
+      font-weight: 800;
+      letter-spacing: .25em;
+    }
+
+    h1 {
+      max-width: 900px;
+      margin: .8rem 0 0;
+      font-size: clamp(3rem, 8vw, 6.8rem);
+      line-height: .98;
+      letter-spacing: -.055em;
+    }
+
+    .lead {
+      max-width: 680px;
+      margin: 1.7rem 0 0;
+      color: rgba(248, 249, 250, .78);
+      font-size: clamp(1.05rem, 2vw, 1.25rem);
+      line-height: 1.7;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .8rem;
+      margin-top: 2rem;
+    }
+
+    .actions a {
+      padding: .9rem 1.3rem;
+      border-radius: 999px;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .primary {
+      background: #f8f9fa;
+      color: #10232b;
+    }
+
+    .secondary {
+      border: 1px solid rgba(255, 255, 255, .2);
+    }
+
+    .section {
+      width: min(100% - 2rem, 1180px);
+      margin: 0 auto;
+      padding: 6rem 0 8rem;
+      border-top: 1px solid rgba(255, 255, 255, .12);
+    }
+
+    h2 {
+      max-width: 720px;
+      margin: .7rem 0 0;
+      font-size: clamp(2.2rem, 5vw, 4.2rem);
+      line-height: 1.04;
+      letter-spacing: -.04em;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 2.5rem;
+    }
+
+    article {
+      min-height: 220px;
+      padding: 1.5rem;
+      border: 1px solid rgba(255, 255, 255, .12);
+      border-radius: 24px;
+      background: rgba(255, 255, 255, .045);
+    }
+
+    article h3 {
+      margin: 0;
+      font-size: 1.3rem;
+    }
+
+    article p {
+      margin: .8rem 0 0;
+      color: rgba(248, 249, 250, .7);
+      line-height: 1.65;
+    }
+
+    @media (max-width: 720px) {
+      nav a:not(:first-child) {
+        display: none;
+      }
+
+      .cards {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</BaseLayout>
