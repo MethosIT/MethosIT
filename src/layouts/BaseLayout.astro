@@ -7,6 +7,8 @@ interface Props {
   noindex?: boolean;
   lang?: "it" | "en";
   ogImage?: string;
+  alternateIt?: string;
+  alternateEn?: string;
 }
 
 const {
@@ -15,6 +17,8 @@ const {
   noindex = false,
   lang = "it",
   ogImage = "/images/hero.webp",
+  alternateIt,
+  alternateEn,
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, Astro.site);
@@ -29,7 +33,12 @@ const absoluteOgImage = new URL(ogImage, Astro.site);
     <meta name="description" content={description} />
     {noindex && <meta name="robots" content="noindex, nofollow" />}
     <link rel="canonical" href={canonical} />
+    {alternateIt && <link rel="alternate" hreflang="it" href={new URL(alternateIt, Astro.site)} />}
+    {alternateEn && <link rel="alternate" hreflang="en" href={new URL(alternateEn, Astro.site)} />}
+    {alternateIt && <link rel="alternate" hreflang="x-default" href={new URL(alternateIt, Astro.site)} />}
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Thouraz Pub" />
+    <meta property="og:locale" content={lang === "it" ? "it_IT" : "en_GB"} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
