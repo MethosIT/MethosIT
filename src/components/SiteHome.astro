@@ -72,7 +72,7 @@ const copy = isIt
       experienceEyebrow: "THE THOURAZ WAY",
       experienceTitle: "Don't just pick a drink. Create it with us.",
       experienceText:
-        "The relationship with our guests is part of the recipe. We start from your tastes — sweet, dry, fresh, bold, spicy or alcohol-free — and choose aromas, ingredients and character together.",
+        "We start from your tastes — sweet, dry, fresh, bold, spicy or alcohol-free — and together we find the aromas, ingredients and character of the perfect cocktail for you.",
       experienceQuote:
         "Care is not something added after the product: it is how the product begins.",
       gelatoEyebrow: "ARTISAN GELATO",
@@ -111,6 +111,22 @@ const jsonLd = {
   telephone: site.phoneDisplay,
   email: site.email,
   image: "https://thourazpub.it/images/hero.webp",
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday",
+      ],
+      opens: "20:00",
+      closes: "04:00",
+    },
+  ],
   address: {
     "@type": "PostalAddress",
     streetAddress: site.address.street,
