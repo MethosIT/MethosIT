@@ -10,7 +10,7 @@ export const site = {
   },
   phoneDisplay: "+39 348 888 9533",
   phoneHref: "tel:+393488889533",
-  whatsapp: "https://wa.me/393488889533",
+  whatsapp: "https://wa.me/393488889533?text=Ciao%2C%20vorrei%20prenotare%20un%20tavolo%20al%20Thouraz%20Pub.",
   email: "thourazpub@gmail.com",
   instagram: "https://www.instagram.com/thourazpub/",
   maps: "https://www.google.com/maps/search/?api=1&query=Thouraz+Pub%2C+Via+Astichello+58%2C+Montecchio+Precalcino",
