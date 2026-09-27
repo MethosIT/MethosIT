@@ -1,2 +1,6 @@
 User-agent: *
-Disallow: /
+Allow: /
+Disallow: /menu
+Disallow: /listini/
+
+Sitemap: https://thourazpub.it/sitemap.xml
