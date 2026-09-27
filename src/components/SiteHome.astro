@@ -23,14 +23,14 @@ const copy = isIt
       statSince: "Dal",
       statHours: "Orario",
       statPlace: "Montecchio Precalcino",
-      experienceEyebrow: "IL MODO THOURAZ",
+      experienceEyebrow: "THE THOURAZ WAY",
       experienceTitle: "Non scegliere solo un drink. Costruiscilo con noi.",
       experienceText:
         "Il rapporto con il cliente è parte della ricetta. Partiamo dai tuoi gusti — dolce, secco, fresco, intenso, speziato, analcolico — e troviamo insieme profumi, ingredienti e carattere del cocktail.",
       experienceQuote:
         "La cura non arriva dopo il prodotto: è il modo in cui il prodotto nasce.",
       gelatoEyebrow: "GELATERIA ARTIGIANALE",
-      gelatoTitle: "Materie prime scelte. Gusto senza compromessi.",
+      gelatoTitle: "Materie prime di qualità, gusto senza compromessi.",
       gelatoText:
         "I nostri gelati artigianali sono preparati con materie prime di alta qualità e sono tutti senza glutine e senza lattosio. Una proposta pensata con la stessa attenzione che mettiamo nei cocktail.",
       gelatoNote: "Per allergie o esigenze specifiche, parlane sempre con il personale.",
@@ -76,7 +76,7 @@ const copy = isIt
       experienceQuote:
         "Care is not something added after the product: it is how the product begins.",
       gelatoEyebrow: "ARTISAN GELATO",
-      gelatoTitle: "Selected ingredients. No compromise on flavour.",
+      gelatoTitle: "Quality ingredients, flavour without compromise.",
       gelatoText:
         "Our artisan gelato is made with high-quality ingredients, and every flavour is gluten-free and lactose-free. The same attention we put into cocktails goes into every scoop.",
       gelatoNote: "For allergies or specific dietary requirements, always speak with our staff.",
@@ -128,8 +128,7 @@ const jsonLd = {
 
 <header class="topbar">
   <a class="brand" href={isIt ? "/home" : "/en"} aria-label="Thouraz Pub">
-    <img src="/LogoThouraz.png" alt="" />
-    <span>THOURAZ</span>
+    <img src="/LogoThouraz.png" alt="Thouraz Pub" />
   </a>
 
   <nav aria-label={isIt ? "Navigazione principale" : "Main navigation"}>
@@ -330,20 +329,15 @@ const jsonLd = {
   .brand {
     display: flex;
     align-items: center;
-    gap: .75rem;
     color: #fff;
     text-decoration: none;
-    font-weight: 800;
-    letter-spacing: .12em;
-    font-size: .86rem;
   }
 
   .brand img {
-    width: 46px;
-    height: 46px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 1px solid rgba(255,255,255,.18);
+    width: 96px;
+    height: 54px;
+    object-fit: contain;
+    object-position: left center;
   }
 
   nav {
@@ -783,8 +777,9 @@ const jsonLd = {
       padding-top: .8rem;
     }
 
-    .brand span {
-      display: none;
+    .brand img {
+      width: 84px;
+      height: 48px;
     }
 
     nav {
