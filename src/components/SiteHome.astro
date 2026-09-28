@@ -1186,16 +1186,26 @@ const jsonLd = {
       background: rgba(11,11,10,.82);
       backdrop-filter: blur(14px);
       box-shadow: 0 10px 30px rgba(0,0,0,.28);
-      transform: translate(-50%, calc(100% + 2rem));
+      transform: translate(-50%, 18px) scale(.985);
       opacity: 0;
+      visibility: hidden;
       pointer-events: none;
-      transition: transform .22s ease, opacity .22s ease;
+      transition:
+        opacity .38s ease,
+        transform .38s cubic-bezier(.22, 1, .36, 1),
+        visibility 0s linear .38s;
+      will-change: opacity, transform;
     }
 
     .mobile-cta.is-visible {
-      transform: translate(-50%, 0);
+      transform: translate(-50%, 0) scale(1);
       opacity: 1;
+      visibility: visible;
       pointer-events: auto;
+      transition:
+        opacity .38s ease,
+        transform .38s cubic-bezier(.22, 1, .36, 1),
+        visibility 0s linear 0s;
     }
 
     .mobile-cta a {
@@ -1230,6 +1240,13 @@ const jsonLd = {
     footer {
       grid-template-columns: 1fr;
       gap: .8rem;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .mobile-cta,
+    .mobile-cta.is-visible {
+      transition: none;
+      transform: translate(-50%, 0);
     }
   }
 </style>
