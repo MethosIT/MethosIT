@@ -23,6 +23,8 @@ const {
 
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const absoluteOgImage = new URL(ogImage, Astro.site);
+const umamiWebsiteId = import.meta.env.PUBLIC_UMAMI_WEBSITE_ID;
+const umamiScriptUrl = import.meta.env.PUBLIC_UMAMI_SCRIPT_URL ?? "https://cloud.umami.is/script.js";
 ---
 
 <!doctype html>
@@ -52,9 +54,42 @@ const absoluteOgImage = new URL(ogImage, Astro.site);
       crossorigin
     />
     <title>{title}</title>
+    {umamiWebsiteId && (
+      <script
+        defer
+        src={umamiScriptUrl}
+        data-website-id={umamiWebsiteId}
+      ></script>
+    )}
   </head>
   <body>
     <a class="skip-link" href="#main-content">{lang === "it" ? "Vai al contenuto" : "Skip to content"}</a>
     <slot />
+    <script is:inline>
+      document.addEventListener("click", (event) => {
+        const origin = event.target;
+        if (!(origin instanceof Element)) return;
+
+        const target = origin.closest("[data-track]");
+        if (!target) return;
+
+        const eventName = target.getAttribute("data-track");
+        if (!eventName) return;
+
+        const props = {
+          location: target.getAttribute("data-track-location") || "unknown",
+          href: target.getAttribute("href") || "",
+          language: document.documentElement.lang || "",
+        };
+
+        if (window.umami && typeof window.umami.track === "function") {
+          window.umami.track(eventName, props);
+        }
+
+        if (window.plausible && typeof window.plausible === "function") {
+          window.plausible(eventName, { props });
+        }
+      });
+    </script>
   </body>
 </html>
