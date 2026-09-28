@@ -14,6 +14,7 @@ const copy = isIt
       navGelato: "Gelato",
       navReviews: "Recensioni",
       navVisit: "Dove siamo",
+      navEvents: "Sala eventi",
       menu: "Menu",
       heroEyebrow: "DAL 1987 · MONTECCHIO PRECALCINO",
       heroTitle: "Ogni cocktail comincia da una conversazione.",
@@ -70,6 +71,7 @@ const copy = isIt
       navGelato: "Gelato",
       navReviews: "Reviews",
       navVisit: "Visit us",
+      navEvents: "Private events",
       menu: "Menu",
       heroEyebrow: "SINCE 1987 · MONTECCHIO PRECALCINO",
       heroTitle: "Every cocktail starts with a conversation.",
@@ -185,11 +187,31 @@ const jsonLd = {
     <a href="#gelato">{copy.navGelato}</a>
     <a href="#reviews">{copy.navReviews}</a>
     <a href="#visit">{copy.navVisit}</a>
+    <a href={isIt ? "/sala-eventi/" : "/en/private-events/"} data-track="private_events_click" data-track-location="header">{copy.navEvents}</a>
     <a class="menu-pill" href="/menu/" data-track="menu_click" data-track-location="header">{copy.menu}</a>
     <a class="language" href={copy.languageHref} lang={isIt ? "en" : "it"} hreflang={isIt ? "en" : "it"} aria-label={copy.languageAria} data-track="language_switch" data-track-location="header">
       {copy.languageLabel}
     </a>
   </nav>
+
+  <details class="mobile-nav">
+    <summary aria-label={isIt ? "Apri navigazione" : "Open navigation"}>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </summary>
+    <div class="mobile-nav-panel">
+      <a href="#experience">{copy.navExperience}</a>
+      <a href="#gelato">{copy.navGelato}</a>
+      <a href="#reviews">{copy.navReviews}</a>
+      <a href="#visit">{copy.navVisit}</a>
+      <a href={isIt ? "/sala-eventi/" : "/en/private-events/"} data-track="private_events_click" data-track-location="mobile_nav">{copy.navEvents}</a>
+      <a href="/menu/" data-track="menu_click" data-track-location="mobile_nav">{copy.menu}</a>
+      <a href={copy.languageHref} lang={isIt ? "en" : "it"} hreflang={isIt ? "en" : "it"} data-track="language_switch" data-track-location="mobile_nav">
+        {isIt ? "English" : "Italiano"}
+      </a>
+    </div>
+  </details>
 </header>
 
 <main id="main-content" tabindex="-1">
@@ -401,6 +423,11 @@ const jsonLd = {
 <script is:inline>
   const hero = document.getElementById("hero");
   const mobileCta = document.querySelector(".mobile-cta");
+  const mobileNav = document.querySelector(".mobile-nav");
+
+  mobileNav?.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => mobileNav.removeAttribute("open"));
+  });
 
   if (hero && mobileCta && "IntersectionObserver" in window) {
     const observer = new IntersectionObserver(
@@ -491,6 +518,79 @@ const jsonLd = {
   .language {
     min-width: 44px;
     text-align: center;
+  }
+
+  .mobile-nav {
+    display: none;
+    position: relative;
+  }
+
+  .mobile-nav summary {
+    width: 48px;
+    height: 48px;
+    display: grid;
+    place-content: center;
+    gap: 5px;
+    list-style: none;
+    cursor: pointer;
+    border: 1px solid rgba(255,255,255,.28);
+    border-radius: 999px;
+    background: rgba(10,10,9,.18);
+    backdrop-filter: blur(12px);
+  }
+
+  .mobile-nav summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .mobile-nav summary span {
+    width: 19px;
+    height: 1.5px;
+    display: block;
+    background: #fff;
+    transition: transform .2s ease, opacity .2s ease;
+  }
+
+  .mobile-nav[open] summary span:nth-child(1) {
+    transform: translateY(6.5px) rotate(45deg);
+  }
+
+  .mobile-nav[open] summary span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .mobile-nav[open] summary span:nth-child(3) {
+    transform: translateY(-6.5px) rotate(-45deg);
+  }
+
+  .mobile-nav-panel {
+    position: absolute;
+    top: calc(100% + .65rem);
+    right: 0;
+    width: min(78vw, 300px);
+    padding: .55rem;
+    display: grid;
+    border: 1px solid rgba(255,255,255,.13);
+    background: rgba(15,14,12,.96);
+    box-shadow: 0 22px 55px rgba(0,0,0,.38);
+    backdrop-filter: blur(18px);
+  }
+
+  .mobile-nav-panel a {
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    padding: .75rem .9rem;
+    color: #f3efe7;
+    text-decoration: none;
+    font-size: .88rem;
+    font-weight: 650;
+    border-bottom: 1px solid rgba(255,255,255,.08);
+  }
+
+  .mobile-nav-panel a:last-child {
+    border-bottom: 0;
+    color: #d8bc8b;
   }
 
   .hero {
@@ -945,8 +1045,12 @@ const jsonLd = {
   }
 
   @media (max-width: 900px) {
-    nav a:not(.menu-pill):not(.language) {
+    .topbar > nav {
       display: none;
+    }
+
+    .mobile-nav {
+      display: block;
     }
 
     .hero {
@@ -1002,15 +1106,6 @@ const jsonLd = {
     .brand img {
       width: 84px;
       height: 48px;
-    }
-
-    nav {
-      gap: .5rem;
-    }
-
-    .menu-pill,
-    .language {
-      padding: .58rem .72rem;
     }
 
     .hero {
