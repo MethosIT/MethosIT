@@ -1,0 +1,175 @@
+---
+import { site } from "../data/site";
+
+interface Props { lang: "it" | "en"; }
+const { lang } = Astro.props;
+const isIt = lang === "it";
+const homeHref = isIt ? "/home/" : "/en/";
+const altHref = isIt ? "/en/privacy/" : "/privacy/";
+---
+
+<header class="privacy-header">
+  <a class="brand" href={homeHref} aria-label="Thouraz Pub">
+    <img src="/images/logo.webp" alt="Thouraz Pub" width="660" height="274" />
+  </a>
+  <a class="language" href={altHref} lang={isIt ? "en" : "it"} hreflang={isIt ? "en" : "it"}>
+    {isIt ? "EN" : "IT"}
+  </a>
+</header>
+
+<main id="main-content" tabindex="-1">
+  <article class="privacy shell">
+    <p class="eyebrow">{isIt ? "INFORMATIVA PRIVACY" : "PRIVACY NOTICE"}</p>
+    <h1>Privacy Policy</h1>
+    <p class="updated">{isIt ? "Ultimo aggiornamento: 28 settembre 2026" : "Last updated: 28 September 2026"}</p>
+
+    {isIt ? (
+      <>
+        <section>
+          <h2>1. Titolare del trattamento</h2>
+          <p>Il trattamento dei dati personali connessi a questo sito è effettuato dal gestore di Thouraz Pub, con sede operativa in Via Astichello, 58, 36030 Montecchio Precalcino (VI), Italia.</p>
+          <p>Contatti: <a href={"mailto:" + site.email}>{site.email}</a> · <a href={site.phoneHref}>{site.phoneDisplay}</a>.</p>
+          <p class="note">Prima della pubblicazione definitiva, questa sezione va completata con la ragione sociale o il nominativo legale esatto del titolare.</p>
+        </section>
+
+        <section>
+          <h2>2. Dati trattati</h2>
+          <p>Durante la navigazione possono essere trattati dati tecnici necessari al funzionamento e alla sicurezza del sito, come indirizzo IP, data e ora della richiesta, pagina richiesta, tipo di browser o dispositivo e informazioni tecniche analoghe.</p>
+          <p>Se scegli di contattarci tramite telefono, email o WhatsApp, trattiamo i dati che decidi volontariamente di comunicarci, ad esempio nome, recapito e contenuto della richiesta o prenotazione.</p>
+        </section>
+
+        <section>
+          <h2>3. Finalità e basi giuridiche</h2>
+          <ul>
+            <li>erogare il sito e garantirne sicurezza e stabilità, sulla base del legittimo interesse del titolare;</li>
+            <li>rispondere a richieste, informazioni e prenotazioni, anche per adottare misure precontrattuali richieste dall'interessato;</li>
+            <li>adempiere ad obblighi di legge, amministrativi o fiscali eventualmente applicabili.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>4. Hosting</h2>
+          <p>Il sito è ospitato tramite GitHub Pages. Il fornitore di hosting può trattare dati tecnici di connessione e sicurezza secondo la propria informativa privacy e le proprie condizioni di servizio.</p>
+          <p><a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener noreferrer">Privacy Statement di GitHub</a></p>
+        </section>
+
+        <section>
+          <h2>5. Cookie e strumenti di tracciamento</h2>
+          <p>Nella configurazione attuale il sito non utilizza cookie di profilazione e non è attivo alcun servizio di web analytics. Non vengono caricati strumenti di analytics di terze parti finché non vengono esplicitamente configurati.</p>
+          <p>Se in futuro verranno attivati strumenti ulteriori, questa informativa verrà aggiornata prima della loro attivazione e, ove necessario, verrà raccolto il consenso.</p>
+        </section>
+
+        <section>
+          <h2>6. Servizi esterni</h2>
+          <p>Il sito contiene collegamenti verso servizi di terzi, tra cui WhatsApp, Instagram, Google Maps, Google Reviews e Google Drive. Questi servizi vengono aperti solo quando l'utente decide di cliccare il relativo collegamento.</p>
+          <p>Dal momento dell'apertura del servizio esterno, il relativo fornitore può trattare dati secondo la propria informativa privacy.</p>
+        </section>
+
+        <section>
+          <h2>7. Recensioni</h2>
+          <p>Il sito può mostrare brevi estratti di recensioni già pubblicamente disponibili online, con il nome del recensore abbreviato. È possibile chiedere la rimozione di tali riferimenti scrivendo a <a href={"mailto:" + site.email}>{site.email}</a>.</p>
+        </section>
+
+        <section>
+          <h2>8. Conservazione</h2>
+          <p>I dati vengono conservati per il tempo necessario alle finalità per cui sono stati raccolti e, quando applicabile, per l'ulteriore periodo richiesto da obblighi di legge o amministrativi.</p>
+        </section>
+
+        <section>
+          <h2>9. Diritti dell'interessato</h2>
+          <p>Nei casi previsti dal GDPR puoi chiedere accesso ai tuoi dati, rettifica, cancellazione, limitazione del trattamento, portabilità e opposizione.</p>
+          <p>Per esercitare i tuoi diritti puoi scrivere a <a href={"mailto:" + site.email}>{site.email}</a>. Hai inoltre il diritto di proporre reclamo al <a href="https://www.garanteprivacy.it/" target="_blank" rel="noopener noreferrer">Garante per la protezione dei dati personali</a>.</p>
+        </section>
+
+        <section>
+          <h2>10. Decisioni automatizzate</h2>
+          <p>Il sito non effettua decisioni automatizzate né attività di profilazione degli utenti.</p>
+        </section>
+      </>
+    ) : (
+      <>
+        <section>
+          <h2>1. Data controller</h2>
+          <p>Personal data connected with this website is processed by the operator of Thouraz Pub, operating from Via Astichello, 58, 36030 Montecchio Precalcino (VI), Italy.</p>
+          <p>Contact: <a href={"mailto:" + site.email}>{site.email}</a> · <a href={site.phoneHref}>{site.phoneDisplay}</a>.</p>
+          <p class="note">Before final publication, this section should be completed with the exact legal name or entity of the controller.</p>
+        </section>
+
+        <section>
+          <h2>2. Data processed</h2>
+          <p>During normal browsing, technical data required for operation and security may be processed, including IP address, date and time of the request, requested page, browser or device type and similar technical information.</p>
+          <p>If you choose to contact us by phone, email or WhatsApp, we process the information you voluntarily provide, such as your name, contact details and the content of your enquiry or booking.</p>
+        </section>
+
+        <section>
+          <h2>3. Purposes and legal bases</h2>
+          <ul>
+            <li>to provide the website and maintain its security and stability, based on the controller's legitimate interests;</li>
+            <li>to respond to enquiries, information requests and bookings, including pre-contractual steps requested by the user;</li>
+            <li>to comply with applicable legal, administrative or tax obligations.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2>4. Hosting</h2>
+          <p>The site is hosted through GitHub Pages. The hosting provider may process technical connection and security data according to its own privacy notice and terms of service.</p>
+          <p><a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener noreferrer">GitHub Privacy Statement</a></p>
+        </section>
+
+        <section>
+          <h2>5. Cookies and tracking</h2>
+          <p>In the current configuration, the site does not use profiling cookies and no web analytics service is active. No third-party analytics tool is loaded unless explicitly configured.</p>
+          <p>If additional tools are enabled in the future, this notice will be updated before activation and consent will be requested where required.</p>
+        </section>
+
+        <section>
+          <h2>6. External services</h2>
+          <p>The site contains links to third-party services including WhatsApp, Instagram, Google Maps, Google Reviews and Google Drive. These services are opened only when the user chooses to click the relevant link.</p>
+          <p>Once the external service is opened, its provider may process data according to its own privacy notice.</p>
+        </section>
+
+        <section>
+          <h2>7. Reviews</h2>
+          <p>The site may display short excerpts from reviews already publicly available online, with reviewers' surnames abbreviated. Removal can be requested by writing to <a href={"mailto:" + site.email}>{site.email}</a>.</p>
+        </section>
+
+        <section>
+          <h2>8. Retention</h2>
+          <p>Data is retained for as long as necessary for the purposes for which it was collected and, where applicable, for any additional period required by legal or administrative obligations.</p>
+        </section>
+
+        <section>
+          <h2>9. Your rights</h2>
+          <p>Where provided by the GDPR, you may request access, rectification, erasure, restriction of processing, data portability and objection.</p>
+          <p>To exercise your rights, contact <a href={"mailto:" + site.email}>{site.email}</a>. You also have the right to lodge a complaint with the <a href="https://www.garanteprivacy.it/" target="_blank" rel="noopener noreferrer">Italian Data Protection Authority</a>.</p>
+        </section>
+
+        <section>
+          <h2>10. Automated decision-making</h2>
+          <p>The site does not carry out automated decision-making or user profiling.</p>
+        </section>
+      </>
+    )}
+  </article>
+</main>
+
+<style>
+  :global(body){background:#0b0b0a;color:#f3efe7}
+  .privacy-header{width:min(100% - 2.2rem,1120px);margin:auto;padding:1.35rem 0;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.1)}
+  .brand img{width:96px;height:54px;object-fit:contain}
+  .language{min-width:44px;min-height:44px;display:inline-flex;align-items:center;justify-content:center;padding:.55rem .7rem;border:1px solid rgba(255,255,255,.22);border-radius:999px;color:#f3efe7;text-decoration:none;font-size:.8rem;font-weight:700}
+  .shell{width:min(100% - 2.2rem,900px);margin:auto}
+  .privacy{padding:clamp(4rem,8vw,7rem) 0 clamp(5rem,9vw,8rem)}
+  .eyebrow{margin:0 0 1rem;color:#d8bc8b;font-size:.72rem;font-weight:800;letter-spacing:.22em}
+  h1{margin:0;font-size:clamp(3.2rem,8vw,6.8rem);line-height:.94;letter-spacing:-.055em}
+  .updated{margin:1.2rem 0 0;color:#8f897f;font-size:.78rem}
+  section{padding-top:3.2rem}
+  h2{margin:0 0 1rem;font-size:clamp(1.45rem,2.8vw,2.15rem);line-height:1.15;letter-spacing:-.025em}
+  p,li{color:#bdb7ad;font-size:.98rem;line-height:1.8}
+  p{margin:.8rem 0 0}
+  ul{margin:.9rem 0 0;padding-left:1.25rem}
+  a{color:#d8bc8b;text-underline-offset:.18em}
+  strong{color:#f3efe7}
+  .note{padding:1rem 1.1rem;border-left:1px solid #b99763;background:rgba(185,151,99,.06);color:#d7c8b2}
+  @media(max-width:620px){.privacy-header,.shell{width:calc(100% - 1.4rem)}.brand img{width:84px;height:48px}.privacy{padding-top:3rem}h1{font-size:clamp(2.8rem,15vw,4.6rem);overflow-wrap:anywhere}}
+</style>
