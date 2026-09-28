@@ -12,6 +12,7 @@ const copy = isIt
   ? {
       navExperience: "Esperienza",
       navGelato: "Gelato",
+      navReviews: "Recensioni",
       navVisit: "Dove siamo",
       menu: "Menu",
       heroEyebrow: "DAL 1987 · MONTECCHIO PRECALCINO",
@@ -50,6 +51,15 @@ const copy = isIt
       call: "Chiama",
       whatsapp: "WhatsApp",
       instagram: "Instagram",
+      reviewsEyebrow: "DICONO DI NOI",
+      reviewsTitle: "Un posto che resta.",
+      reviewsText: "Cocktail su misura, cura del locale e gelato artigianale sono tra gli aspetti che tornano più spesso nelle recensioni.",
+      reviewsRating: "su Google",
+      reviewsCount: "oltre 480 recensioni",
+      readReviews: "Leggi le recensioni su Google",
+      leaveReview: "Lascia una recensione",
+      reviewLabel: "Recensione Google",
+      mobileCtaLabel: "Azioni rapide",
       footer: "Cocktail su misura · Gelato artigianale · Dal 1987",
       languageLabel: "EN",
       languageHref: "/en/",
@@ -58,6 +68,7 @@ const copy = isIt
   : {
       navExperience: "Experience",
       navGelato: "Gelato",
+      navReviews: "Reviews",
       navVisit: "Visit us",
       menu: "Menu",
       heroEyebrow: "SINCE 1987 · MONTECCHIO PRECALCINO",
@@ -96,11 +107,32 @@ const copy = isIt
       call: "Call",
       whatsapp: "WhatsApp",
       instagram: "Instagram",
+      reviewsEyebrow: "WHAT GUESTS SAY",
+      reviewsTitle: "A place that stays with you.",
+      reviewsText: "Made-to-measure cocktails, attention to detail and artisan gelato are among the themes guests mention most often.",
+      reviewsRating: "on Google",
+      reviewsCount: "480+ reviews",
+      readReviews: "Read reviews on Google",
+      leaveReview: "Leave a review",
+      reviewLabel: "Google review",
+      mobileCtaLabel: "Quick actions",
       footer: "Made-to-measure cocktails · Artisan gelato · Since 1987",
       languageLabel: "IT",
       languageHref: "/home/",
       languageAria: "Versione italiana",
     };
+
+const reviewQuotes = isIt
+  ? [
+      { author: "Roberta Nebuloni", text: "Un luogo dove si respira una grande cura e piacevolezza." },
+      { author: "Pietro Pastori", text: "Il prodotto è di altissima qualità." },
+      { author: "Carlotta S.", text: "Questo è diventato il nostro posto speciale." },
+    ]
+  : [
+      { author: "Roberta Nebuloni", text: "A place where you can feel genuine care and warmth." },
+      { author: "Pietro Pastori", text: "The product is of the highest quality." },
+      { author: "Carlotta S.", text: "This has become our special place." },
+    ];
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -151,9 +183,10 @@ const jsonLd = {
   <nav aria-label={isIt ? "Navigazione principale" : "Main navigation"}>
     <a href="#experience">{copy.navExperience}</a>
     <a href="#gelato">{copy.navGelato}</a>
+    <a href="#reviews">{copy.navReviews}</a>
     <a href="#visit">{copy.navVisit}</a>
-    <a class="menu-pill" href="/menu/">{copy.menu}</a>
-    <a class="language" href={copy.languageHref} lang={isIt ? "en" : "it"} hreflang={isIt ? "en" : "it"} aria-label={copy.languageAria}>
+    <a class="menu-pill" href="/menu/" data-track="menu_click" data-track-location="header">{copy.menu}</a>
+    <a class="language" href={copy.languageHref} lang={isIt ? "en" : "it"} hreflang={isIt ? "en" : "it"} aria-label={copy.languageAria} data-track="language_switch" data-track-location="header">
       {copy.languageLabel}
     </a>
   </nav>
@@ -176,8 +209,8 @@ const jsonLd = {
       <h1>{copy.heroTitle}</h1>
       <p class="hero-copy">{copy.heroText}</p>
       <div class="hero-actions">
-        <a class="button button-light" href="/menu/">{copy.heroMenu}</a>
-        <a class="button button-glass" href={site.whatsapp} target="_blank" rel="noopener noreferrer">
+        <a class="button button-light" href="/menu/" data-track="menu_click" data-track-location="hero">{copy.heroMenu}</a>
+        <a class="button button-glass" href={site.whatsapp} target="_blank" rel="noopener noreferrer" data-track="whatsapp_click" data-track-location="hero">
           {copy.heroWhatsapp}
         </a>
       </div>
@@ -290,6 +323,40 @@ const jsonLd = {
     </div>
   </section>
 
+  <section id="reviews" class="reviews section-shell">
+    <div class="reviews-heading">
+      <div>
+        <p class="eyebrow">{copy.reviewsEyebrow}</p>
+        <h2>{copy.reviewsTitle}</h2>
+        <p class="body-copy">{copy.reviewsText}</p>
+      </div>
+      <div class="google-rating" aria-label={`${site.googleRating} / 5 ${copy.reviewsRating}, ${copy.reviewsCount}`}>
+        <span class="rating-stars" aria-hidden="true">★★★★★</span>
+        <strong>{site.googleRating.toLocaleString(isIt ? "it-IT" : "en-GB")} / 5</strong>
+        <span>{copy.reviewsRating} · {copy.reviewsCount}</span>
+      </div>
+    </div>
+
+    <div class="reviews-grid" role="list">
+      {reviewQuotes.map((review) => (
+        <article class="review-card" role="listitem">
+          <div class="review-stars" aria-hidden="true">★★★★★</div>
+          <blockquote>“{review.text}”</blockquote>
+          <p><strong>{review.author}</strong><span>{copy.reviewLabel}</span></p>
+        </article>
+      ))}
+    </div>
+
+    <div class="reviews-actions">
+      <a class="button button-light" href={site.googleReviews} target="_blank" rel="noopener noreferrer" data-track="google_reviews_click" data-track-location="reviews">
+        {copy.readReviews}
+      </a>
+      <a class="button button-outline" href={site.googleReviewWrite} target="_blank" rel="noopener noreferrer" data-track="google_review_write_click" data-track-location="reviews">
+        {copy.leaveReview}
+      </a>
+    </div>
+  </section>
+
   <section id="visit" class="visit">
     <div class="visit-inner">
       <div class="visit-heading">
@@ -317,14 +384,19 @@ const jsonLd = {
       </div>
 
       <div class="contact-actions">
-        <a class="button button-light" href={site.maps} target="_blank" rel="noopener noreferrer">{copy.directions}</a>
-        <a class="button button-outline" href={site.phoneHref}>{copy.call}</a>
-        <a class="button button-outline" href={site.whatsapp} target="_blank" rel="noopener noreferrer">{copy.whatsapp}</a>
-        <a class="button button-outline" href={site.instagram} target="_blank" rel="noopener noreferrer">{copy.instagram}</a>
+        <a class="button button-light" href={site.maps} target="_blank" rel="noopener noreferrer" data-track="maps_click" data-track-location="visit">{copy.directions}</a>
+        <a class="button button-outline" href={site.phoneHref} data-track="call_click" data-track-location="visit">{copy.call}</a>
+        <a class="button button-outline" href={site.whatsapp} target="_blank" rel="noopener noreferrer" data-track="whatsapp_click" data-track-location="visit">{copy.whatsapp}</a>
+        <a class="button button-outline" href={site.instagram} target="_blank" rel="noopener noreferrer" data-track="instagram_click" data-track-location="visit">{copy.instagram}</a>
       </div>
     </div>
   </section>
 </main>
+
+<div class="mobile-cta" aria-label={copy.mobileCtaLabel}>
+  <a href={site.phoneHref} data-track="call_click" data-track-location="sticky">{copy.call}</a>
+  <a href={site.whatsapp} target="_blank" rel="noopener noreferrer" data-track="whatsapp_click" data-track-location="sticky">{copy.whatsapp}</a>
+</div>
 
 <footer>
   <a class="footer-brand" href={isIt ? "/home/" : "/en/"} aria-label="Thouraz Pub">
@@ -684,6 +756,102 @@ const jsonLd = {
     height: min(55vw, 620px);
   }
 
+  .reviews {
+    padding-top: clamp(5rem, 10vw, 9rem);
+    padding-bottom: clamp(5rem, 10vw, 9rem);
+  }
+
+  .reviews-heading {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 3rem;
+    align-items: end;
+  }
+
+  .reviews-heading > div:first-child {
+    max-width: 820px;
+  }
+
+  .google-rating {
+    min-width: 220px;
+    padding: 1.2rem 1.3rem;
+    border: 1px solid rgba(255,255,255,.12);
+    background: #12110f;
+  }
+
+  .rating-stars,
+  .review-stars {
+    color: #d8bc8b;
+    letter-spacing: .12em;
+  }
+
+  .google-rating strong {
+    display: block;
+    margin-top: .55rem;
+    font-size: 1.45rem;
+  }
+
+  .google-rating > span:last-child {
+    display: block;
+    margin-top: .25rem;
+    color: #a9a298;
+    font-size: .75rem;
+  }
+
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: .75rem;
+    margin-top: 3rem;
+  }
+
+  .review-card {
+    min-height: 260px;
+    padding: 1.6rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border: 1px solid rgba(255,255,255,.10);
+    background: #12110f;
+  }
+
+  .review-card blockquote {
+    margin: 1.5rem 0;
+    color: #eee8df;
+    font-size: clamp(1.05rem, 1.7vw, 1.35rem);
+    line-height: 1.55;
+  }
+
+  .review-card p {
+    margin: 0;
+  }
+
+  .review-card p strong,
+  .review-card p span {
+    display: block;
+  }
+
+  .review-card p strong {
+    font-size: .86rem;
+  }
+
+  .review-card p span {
+    margin-top: .3rem;
+    color: #928b80;
+    font-size: .72rem;
+  }
+
+  .reviews-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .75rem;
+    margin-top: 1.5rem;
+  }
+
+  .mobile-cta {
+    display: none;
+  }
+
   .visit {
     border-top: 1px solid rgba(255,255,255,.10);
     background: #12110f;
@@ -799,6 +967,15 @@ const jsonLd = {
     .info-grid {
       grid-template-columns: 1fr 1fr;
     }
+
+    .reviews-heading {
+      grid-template-columns: 1fr;
+      align-items: start;
+    }
+
+    .google-rating {
+      width: fit-content;
+    }
   }
 
   @media (max-width: 620px) {
@@ -850,7 +1027,7 @@ const jsonLd = {
     }
 
     .hero-stats {
-      bottom: 1.3rem;
+      bottom: 6rem;
     }
 
     .split-section,
@@ -941,6 +1118,82 @@ const jsonLd = {
       grid-column: auto;
       height: 520px;
       scroll-snap-align: start;
+    }
+
+    .reviews {
+      width: 100%;
+      padding-left: .7rem;
+      padding-right: .7rem;
+    }
+
+    .reviews-heading {
+      padding: 0;
+    }
+
+    .reviews-grid {
+      display: flex;
+      gap: .75rem;
+      overflow-x: auto;
+      overflow-y: hidden;
+      scroll-snap-type: x mandatory;
+      overscroll-behavior-inline: contain;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      padding-bottom: .35rem;
+    }
+
+    .reviews-grid::-webkit-scrollbar {
+      display: none;
+    }
+
+    .review-card {
+      flex: 0 0 84vw;
+      min-height: 250px;
+      scroll-snap-align: start;
+    }
+
+    .reviews-actions .button {
+      flex: 1 1 100%;
+    }
+
+    :global(body) {
+      padding-bottom: calc(76px + env(safe-area-inset-bottom));
+    }
+
+    .mobile-cta {
+      position: fixed;
+      z-index: 60;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: .5rem;
+      padding: .65rem .7rem calc(.65rem + env(safe-area-inset-bottom));
+      border-top: 1px solid rgba(255,255,255,.12);
+      background: rgba(11,11,10,.90);
+      backdrop-filter: blur(14px);
+    }
+
+    .mobile-cta a {
+      min-height: 50px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      text-decoration: none;
+      font-size: .88rem;
+      font-weight: 800;
+    }
+
+    .mobile-cta a:first-child {
+      border: 1px solid rgba(243,239,231,.28);
+      color: #f3efe7;
+    }
+
+    .mobile-cta a:last-child {
+      background: #f3efe7;
+      color: #141311;
     }
 
     .info-grid {
