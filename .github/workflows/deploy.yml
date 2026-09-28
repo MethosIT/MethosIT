@@ -34,6 +34,9 @@ jobs:
         run: npm run check
 
       - name: Build
+        env:
+          PUBLIC_UMAMI_WEBSITE_ID: ${{ vars.PUBLIC_UMAMI_WEBSITE_ID }}
+          PUBLIC_UMAMI_SCRIPT_URL: ${{ vars.PUBLIC_UMAMI_SCRIPT_URL }}
         run: npm run build
 
       - name: Verify published routes and metadata
