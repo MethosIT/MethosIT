@@ -52,7 +52,7 @@ const copy = isIt
       instagram: "Instagram",
       footer: "Cocktail su misura · Gelato artigianale · Dal 1987",
       languageLabel: "EN",
-      languageHref: "/en",
+      languageHref: "/en/",
       languageAria: "English version",
     }
   : {
@@ -98,7 +98,7 @@ const copy = isIt
       instagram: "Instagram",
       footer: "Made-to-measure cocktails · Artisan gelato · Since 1987",
       languageLabel: "IT",
-      languageHref: "/home",
+      languageHref: "/home/",
       languageAria: "Versione italiana",
     };
 
@@ -106,7 +106,8 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "BarOrPub",
   name: site.name,
-  url: "https://thourazpub.it/",
+  "@id": "https://thourazpub.it/#thouraz-pub",
+  url: "https://thourazpub.it/home/",
   foundingDate: String(site.founded),
   telephone: site.phoneDisplay,
   email: site.email,
@@ -135,7 +136,7 @@ const jsonLd = {
     addressRegion: site.address.province,
     addressCountry: site.address.country,
   },
-  hasMenu: "https://thourazpub.it/menu",
+  hasMenu: "https://thourazpub.it/menu/",
   sameAs: [site.instagram],
 };
 ---
@@ -143,22 +144,22 @@ const jsonLd = {
 <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 
 <header class="topbar">
-  <a class="brand" href={isIt ? "/home" : "/en"} aria-label="Thouraz Pub">
-    <img src="/LogoThouraz.png" alt="Thouraz Pub" />
+  <a class="brand" href={isIt ? "/home/" : "/en/"} aria-label="Thouraz Pub">
+    <img src="/images/logo.webp" alt="Thouraz Pub" width="660" height="274" />
   </a>
 
   <nav aria-label={isIt ? "Navigazione principale" : "Main navigation"}>
     <a href="#experience">{copy.navExperience}</a>
     <a href="#gelato">{copy.navGelato}</a>
     <a href="#visit">{copy.navVisit}</a>
-    <a class="menu-pill" href="/menu">{copy.menu}</a>
-    <a class="language" href={copy.languageHref} aria-label={copy.languageAria}>
+    <a class="menu-pill" href="/menu/">{copy.menu}</a>
+    <a class="language" href={copy.languageHref} lang={isIt ? "en" : "it"} hreflang={isIt ? "en" : "it"} aria-label={copy.languageAria}>
       {copy.languageLabel}
     </a>
   </nav>
 </header>
 
-<main>
+<main id="main-content" tabindex="-1">
   <section class="hero">
     <img
       class="hero-image"
@@ -175,7 +176,7 @@ const jsonLd = {
       <h1>{copy.heroTitle}</h1>
       <p class="hero-copy">{copy.heroText}</p>
       <div class="hero-actions">
-        <a class="button button-light" href="/menu">{copy.heroMenu}</a>
+        <a class="button button-light" href="/menu/">{copy.heroMenu}</a>
         <a class="button button-glass" href={site.whatsapp} target="_blank" rel="noopener noreferrer">
           {copy.heroWhatsapp}
         </a>
@@ -204,7 +205,7 @@ const jsonLd = {
       <p class="body-copy">{copy.experienceText}</p>
       <p class="quote">{copy.experienceQuote}</p>
 
-      <div class="experience-mobile-carousel" aria-label={isIt ? "Foto cocktail e bancone" : "Cocktail and bar photos"}>
+      <div class="experience-mobile-carousel" role="region" tabindex="0" aria-label={isIt ? "Foto cocktail e bancone" : "Cocktail and bar photos"}>
         <figure>
           <img
             src="/images/bar.webp"
@@ -244,7 +245,7 @@ const jsonLd = {
       <p class="body-copy">{copy.gelatoText}</p>
       <p class="fine-print">{copy.gelatoNote}</p>
     </div>
-    <div class="gelato-grid">
+    <div class="gelato-grid" role="region" tabindex="0" aria-label={isIt ? "Foto gelateria" : "Gelato photos"}>
       <figure class="gelato-main">
         <img
           src="/images/gelato.webp"
@@ -273,7 +274,7 @@ const jsonLd = {
       <p class="body-copy">{copy.spacesText}</p>
     </div>
 
-    <div class="gallery">
+    <div class="gallery" role="region" tabindex="0" aria-label={isIt ? "Foto del locale" : "Venue photos"}>
       <figure class="gallery-wide">
         <img src="/images/interior.webp" alt={isIt ? "Interno del locale" : "Interior of the venue"} width="2200" height="1238" loading="lazy" />
       </figure>
@@ -326,8 +327,8 @@ const jsonLd = {
 </main>
 
 <footer>
-  <a class="footer-brand" href={isIt ? "/home" : "/en"} aria-label="Thouraz Pub">
-    <img src="/LogoThouraz.png" alt="Thouraz Pub" />
+  <a class="footer-brand" href={isIt ? "/home/" : "/en/"} aria-label="Thouraz Pub">
+    <img src="/images/logo.webp" alt="Thouraz Pub" width="660" height="274" loading="lazy" decoding="async" />
   </a>
   <p>{copy.footer}</p>
   <p>© {new Date().getFullYear()} Thouraz Pub</p>
@@ -378,6 +379,11 @@ const jsonLd = {
   }
 
   nav a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    min-width: 44px;
     color: rgba(255,255,255,.82);
     font-size: .82rem;
     font-weight: 600;
@@ -396,7 +402,7 @@ const jsonLd = {
   }
 
   .language {
-    min-width: 42px;
+    min-width: 44px;
     text-align: center;
   }
 
@@ -556,6 +562,10 @@ const jsonLd = {
     max-width: 680px;
   }
 
+  .split-section .section-copy {
+    min-width: 0;
+  }
+
   .experience-mobile-carousel {
     display: none;
   }
@@ -635,7 +645,7 @@ const jsonLd = {
 
   .fine-print {
     margin-top: 1.25rem;
-    color: #777168;
+    color: #928b80;
     font-size: .75rem;
     line-height: 1.6;
   }
@@ -729,7 +739,7 @@ const jsonLd = {
     grid-template-columns: 1fr auto auto;
     align-items: center;
     gap: 2rem;
-    color: #716c65;
+    color: #928b80;
     font-size: .72rem;
   }
 
@@ -888,6 +898,7 @@ const jsonLd = {
 
     h2 {
       font-size: clamp(2.6rem, 12vw, 4rem);
+      overflow-wrap: anywhere;
     }
 
     .photo-break {

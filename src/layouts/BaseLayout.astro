@@ -31,7 +31,7 @@ const absoluteOgImage = new URL(ogImage, Astro.site);
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
-    {noindex && <meta name="robots" content="noindex, nofollow" />}
+    {noindex && <meta name="robots" content="noindex, follow" />}
     <link rel="canonical" href={canonical} />
     {alternateIt && <link rel="alternate" hreflang="it" href={new URL(alternateIt, Astro.site)} />}
     {alternateEn && <link rel="alternate" hreflang="en" href={new URL(alternateEn, Astro.site)} />}
@@ -44,15 +44,17 @@ const absoluteOgImage = new URL(ogImage, Astro.site);
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={absoluteOgImage} />
     <meta name="twitter:card" content="summary_large_image" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet"
+      rel="preload"
+      href="/fonts/montserrat-latin-variable.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
     />
     <title>{title}</title>
   </head>
   <body>
+    <a class="skip-link" href="#main-content">{lang === "it" ? "Vai al contenuto" : "Skip to content"}</a>
     <slot />
   </body>
 </html>
