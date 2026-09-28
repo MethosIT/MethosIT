@@ -14,6 +14,10 @@ export const site = {
   email: "thourazpub@gmail.com",
   instagram: "https://www.instagram.com/thourazpub/",
   maps: "https://www.google.com/maps/search/?api=1&query=Thouraz+Pub%2C+Via+Astichello+58%2C+Montecchio+Precalcino",
+  googleReviews: "https://www.google.com/maps/search/?api=1&query=Thouraz+Pub&query_place_id=ChIJt4TMtXzMeEcRcWcOaSsOsTo",
+  googleReviewWrite: "https://search.google.com/local/writereview?placeid=ChIJt4TMtXzMeEcRcWcOaSsOsTo",
+  googleRating: 4.7,
+  googleReviewCountApprox: 480,
   hours: "20:00–04:00",
 } as const;
 
