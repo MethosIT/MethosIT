@@ -124,8 +124,8 @@ const copy = isIt
 
 const reviewQuotes = isIt
   ? [
-      { author: "Roberta Nebuloni", text: "Un luogo dove si respira una grande cura e piacevolezza." },
-      { author: "Pietro Pastori", text: "Il prodotto è di altissima qualità." },
+      { author: "Roberta N.", text: "Un luogo dove si respira una grande cura e piacevolezza." },
+      { author: "Pietro P.", text: "Il prodotto è di altissima qualità." },
       { author: "Carlotta S.", text: "Questo è diventato il nostro posto speciale." },
     ]
   : [
@@ -193,7 +193,7 @@ const jsonLd = {
 </header>
 
 <main id="main-content" tabindex="-1">
-  <section class="hero">
+  <section class="hero" id="hero">
     <img
       class="hero-image"
       src="/images/hero.webp"
@@ -397,6 +397,21 @@ const jsonLd = {
   <a href={site.phoneHref} data-track="call_click" data-track-location="sticky">{copy.call}</a>
   <a href={site.whatsapp} target="_blank" rel="noopener noreferrer" data-track="whatsapp_click" data-track-location="sticky">{copy.whatsapp}</a>
 </div>
+
+<script is:inline>
+  const hero = document.getElementById("hero");
+  const mobileCta = document.querySelector(".mobile-cta");
+
+  if (hero && mobileCta && "IntersectionObserver" in window) {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        mobileCta.classList.toggle("is-visible", !entry.isIntersecting);
+      },
+      { threshold: 0.08 }
+    );
+    observer.observe(hero);
+  }
+</script>
 
 <footer>
   <a class="footer-brand" href={isIt ? "/home/" : "/en/"} aria-label="Thouraz Pub">
@@ -1027,7 +1042,7 @@ const jsonLd = {
     }
 
     .hero-stats {
-      bottom: 6rem;
+      bottom: 1.3rem;
     }
 
     .split-section,
@@ -1156,33 +1171,41 @@ const jsonLd = {
       flex: 1 1 100%;
     }
 
-    :global(body) {
-      padding-bottom: calc(76px + env(safe-area-inset-bottom));
-    }
-
     .mobile-cta {
       position: fixed;
       z-index: 60;
-      left: 0;
-      right: 0;
-      bottom: 0;
+      left: 50%;
+      bottom: calc(.65rem + env(safe-area-inset-bottom));
+      width: min(calc(100% - 1.4rem), 330px);
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: .5rem;
-      padding: .65rem .7rem calc(.65rem + env(safe-area-inset-bottom));
-      border-top: 1px solid rgba(255,255,255,.12);
-      background: rgba(11,11,10,.90);
+      gap: .4rem;
+      padding: .35rem;
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 999px;
+      background: rgba(11,11,10,.82);
       backdrop-filter: blur(14px);
+      box-shadow: 0 10px 30px rgba(0,0,0,.28);
+      transform: translate(-50%, calc(100% + 2rem));
+      opacity: 0;
+      pointer-events: none;
+      transition: transform .22s ease, opacity .22s ease;
+    }
+
+    .mobile-cta.is-visible {
+      transform: translate(-50%, 0);
+      opacity: 1;
+      pointer-events: auto;
     }
 
     .mobile-cta a {
-      min-height: 50px;
+      min-height: 44px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       border-radius: 999px;
       text-decoration: none;
-      font-size: .88rem;
+      font-size: .78rem;
       font-weight: 800;
     }
 
