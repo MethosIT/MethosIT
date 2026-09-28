@@ -49,3 +49,12 @@ The workflow validates pushes to `astro-v1` and `main`, and pull requests. Produ
 Only at an explicitly authorized launch: make the reviewed Astro revision available on `main`, change Pages publishing to **GitHub Actions**, keep the existing custom domain and HTTPS settings, then verify production routes and menu PDFs. The website is configured for the custom domain root, not a `/MethosIT/` base path.
 
 Moving the Italian homepage from `/home/` to `/` is a separate future change. Update canonicals, hreflang, sitemap, schema, and homepage links together at that time; keep `/listini/` functional permanently.
+
+
+## Conversion tracking (optional, disabled until configured)
+
+Homepage conversion links use `data-track` attributes for these events: `menu_click`, `whatsapp_click`, `call_click`, `maps_click`, `instagram_click`, `google_reviews_click`, `google_review_write_click`, and `language_switch`. The event payload also includes the CTA location and current language.
+
+The site has optional Umami Cloud support. No analytics script or third-party analytics request is loaded when `PUBLIC_UMAMI_WEBSITE_ID` is unset. To enable analytics later, create the site in Umami and add the repository variable `PUBLIC_UMAMI_WEBSITE_ID`. Optionally set `PUBLIC_UMAMI_SCRIPT_URL` when using a self-hosted Umami instance; otherwise the Cloud script URL is used.
+
+The click handler also supports a future Plausible integration if `window.plausible` is provided, so the page markup does not need to change when switching providers.
