@@ -1,0 +1,201 @@
+---
+import { site } from "../data/site";
+
+interface Props {
+  lang: "it" | "en";
+}
+
+const { lang } = Astro.props;
+const isIt = lang === "it";
+
+const copy = isIt
+  ? {
+      home: "Home",
+      events: "Sala eventi",
+      menu: "Menu",
+      language: "EN",
+      languageHref: "/en/private-events/",
+      languageAria: "English version",
+      eyebrow: "EVENTI PRIVATI · PIANO SUPERIORE",
+      title: "Uno spazio tutto per voi.",
+      lead: "Al piano superiore del Thouraz, una sala separata dal locale e prenotabile per eventi privati.",
+      availability: "Richiedi disponibilità",
+      call: "Chiama",
+      sectionEyebrow: "LA SALA",
+      sectionTitle: "Il tuo evento, in uno spazio dedicato.",
+      sectionText: "Una sala indipendente al piano superiore, pensata per chi vuole ritrovarsi in uno spazio riservato mantenendo il Thouraz a pochi passi. Raccontaci cosa hai in mente: ti confermeremo disponibilità e dettagli direttamente.",
+      galleryEyebrow: "GLI SPAZI",
+      galleryTitle: "Scopri la sala.",
+      ctaEyebrow: "PARLIAMONE",
+      ctaTitle: "Hai in mente un evento?",
+      ctaText: "Scrivici su WhatsApp o chiamaci per verificare la disponibilità della sala e raccontarci cosa vorresti organizzare.",
+      whatsapp: "Chiedi su WhatsApp",
+      back: "Torna al Thouraz",
+      mobileNav: "Apri navigazione",
+      footer: "Sala eventi privata · Thouraz Pub",
+    }
+  : {
+      home: "Home",
+      events: "Private events",
+      menu: "Menu",
+      language: "IT",
+      languageHref: "/sala-eventi/",
+      languageAria: "Versione italiana",
+      eyebrow: "PRIVATE EVENTS · UPSTAIRS",
+      title: "A space just for you.",
+      lead: "Upstairs at Thouraz, a separate room that can be privately reserved for events.",
+      availability: "Check availability",
+      call: "Call",
+      sectionEyebrow: "THE ROOM",
+      sectionTitle: "Your event, in a dedicated space.",
+      sectionText: "A separate room upstairs for guests looking for a more private setting while keeping the Thouraz close by. Tell us what you have in mind and we will confirm availability and details directly.",
+      galleryEyebrow: "THE SPACE",
+      galleryTitle: "Take a look around.",
+      ctaEyebrow: "LET'S TALK",
+      ctaTitle: "Planning an event?",
+      ctaText: "Message us on WhatsApp or call to check availability and tell us what you would like to organise.",
+      whatsapp: "Ask on WhatsApp",
+      back: "Back to Thouraz",
+      mobileNav: "Open navigation",
+      footer: "Private event room · Thouraz Pub",
+    };
+
+const homeHref = isIt ? "/home/" : "/en/";
+const eventHref = isIt ? "/sala-eventi/" : "/en/private-events/";
+---
+
+<header class="event-header">
+  <a class="brand" href={homeHref} aria-label="Thouraz Pub">
+    <img src="/images/logo.webp" alt="Thouraz Pub" width="660" height="274" />
+  </a>
+
+  <nav aria-label={isIt ? "Navigazione principale" : "Main navigation"}>
+    <a href={homeHref}>{copy.home}</a>
+    <a class="active" href={eventHref}>{copy.events}</a>
+    <a href="/menu/" data-track="menu_click" data-track-location="events_header">{copy.menu}</a>
+    <a class="language" href={copy.languageHref} lang={isIt ? "en" : "it"} hreflang={isIt ? "en" : "it"} aria-label={copy.languageAria}>{copy.language}</a>
+  </nav>
+
+  <details class="mobile-nav">
+    <summary aria-label={copy.mobileNav}><span></span><span></span><span></span></summary>
+    <div class="mobile-nav-panel">
+      <a href={homeHref}>{copy.home}</a>
+      <a href={eventHref}>{copy.events}</a>
+      <a href="/menu/" data-track="menu_click" data-track-location="events_mobile_nav">{copy.menu}</a>
+      <a href={copy.languageHref} lang={isIt ? "en" : "it"} hreflang={isIt ? "en" : "it"}>{isIt ? "English" : "Italiano"}</a>
+    </div>
+  </details>
+</header>
+
+<main id="main-content" tabindex="-1">
+  <section class="event-hero">
+    <img src="/images/events/event-hero.webp" alt={isIt ? "Sala eventi del Thouraz Pub" : "Thouraz Pub private event room"} width="1400" height="787" fetchpriority="high" loading="eager" />
+    <div class="shade"></div>
+    <div class="hero-copy">
+      <p class="eyebrow">{copy.eyebrow}</p>
+      <h1>{copy.title}</h1>
+      <p>{copy.lead}</p>
+      <div class="actions">
+        <a class="button light" href={site.eventsWhatsapp} target="_blank" rel="noopener noreferrer" data-track="events_whatsapp_click" data-track-location="events_hero">{copy.availability}</a>
+        <a class="button glass" href={site.phoneHref} data-track="call_click" data-track-location="events_hero">{copy.call}</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="intro shell">
+    <div class="intro-copy">
+      <p class="eyebrow">{copy.sectionEyebrow}</p>
+      <h2>{copy.sectionTitle}</h2>
+      <p class="body-copy">{copy.sectionText}</p>
+    </div>
+    <figure>
+      <img src="/images/events/event-daylight.webp" alt={isIt ? "Vista diurna della sala eventi" : "Daytime view of the private event room"} width="1200" height="675" loading="lazy" />
+    </figure>
+  </section>
+
+  <section class="gallery-section shell">
+    <p class="eyebrow">{copy.galleryEyebrow}</p>
+    <h2>{copy.galleryTitle}</h2>
+    <div class="event-gallery" role="region" tabindex="0" aria-label={isIt ? "Foto della sala eventi" : "Private event room photos"}>
+      <figure class="wide"><img src="/images/events/event-room.webp" alt={isIt ? "Sala eventi con tavoli e sedute" : "Private event room with tables and seating"} width="1200" height="674" loading="lazy" /></figure>
+      <figure><img src="/images/events/event-portrait.webp" alt={isIt ? "Dettaglio verticale della sala eventi" : "Vertical view of the private event room"} width="850" height="1511" loading="lazy" /></figure>
+      <figure><img src="/images/events/event-daylight.webp" alt={isIt ? "Sala eventi illuminata di giorno" : "Private event room in daylight"} width="1200" height="675" loading="lazy" /></figure>
+    </div>
+  </section>
+
+  <section class="event-cta">
+    <div class="shell cta-inner">
+      <p class="eyebrow">{copy.ctaEyebrow}</p>
+      <h2>{copy.ctaTitle}</h2>
+      <p>{copy.ctaText}</p>
+      <div class="actions">
+        <a class="button light" href={site.eventsWhatsapp} target="_blank" rel="noopener noreferrer" data-track="events_whatsapp_click" data-track-location="events_cta">{copy.whatsapp}</a>
+        <a class="button outline" href={site.phoneHref} data-track="call_click" data-track-location="events_cta">{copy.call}</a>
+        <a class="text-link" href={homeHref}>{copy.back} →</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <img src="/images/logo.webp" alt="Thouraz Pub" width="660" height="274" loading="lazy" decoding="async" />
+  <p>{copy.footer}</p>
+  <p>© {new Date().getFullYear()} Thouraz Pub</p>
+</footer>
+
+<script is:inline>
+  document.querySelector(".mobile-nav")?.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => document.querySelector(".mobile-nav")?.removeAttribute("open"));
+  });
+</script>
+
+<style>
+  :global(body) { background:#0b0b0a; color:#f3efe7; }
+  .event-header { position:absolute; inset:0 0 auto; z-index:20; width:min(100% - 2.2rem,1280px); margin:auto; padding:1.4rem 0; display:flex; justify-content:space-between; align-items:center; gap:1rem; }
+  .brand img { width:96px; height:54px; object-fit:contain; }
+  nav { display:flex; align-items:center; gap:1.15rem; }
+  nav a { min-height:44px; display:inline-flex; align-items:center; color:rgba(255,255,255,.82); text-decoration:none; font-size:.82rem; font-weight:650; }
+  nav a:hover, nav .active { color:#fff; }
+  .language { min-width:44px; justify-content:center; border:1px solid rgba(255,255,255,.28); border-radius:999px; padding:.65rem .9rem; }
+  .mobile-nav { display:none; position:relative; }
+  .mobile-nav summary { width:48px; height:48px; display:grid; place-content:center; gap:5px; list-style:none; cursor:pointer; border:1px solid rgba(255,255,255,.28); border-radius:999px; background:rgba(10,10,9,.18); backdrop-filter:blur(12px); }
+  .mobile-nav summary::-webkit-details-marker { display:none; }
+  .mobile-nav summary span { width:19px; height:1.5px; background:#fff; display:block; transition:transform .2s ease,opacity .2s ease; }
+  .mobile-nav[open] summary span:nth-child(1){transform:translateY(6.5px) rotate(45deg)} .mobile-nav[open] summary span:nth-child(2){opacity:0} .mobile-nav[open] summary span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
+  .mobile-nav-panel { position:absolute; top:calc(100% + .65rem); right:0; width:min(78vw,300px); padding:.55rem; display:grid; border:1px solid rgba(255,255,255,.13); background:rgba(15,14,12,.96); box-shadow:0 22px 55px rgba(0,0,0,.38); backdrop-filter:blur(18px); }
+  .mobile-nav-panel a { min-height:48px; display:flex; align-items:center; padding:.75rem .9rem; color:#f3efe7; text-decoration:none; font-size:.88rem; font-weight:650; border-bottom:1px solid rgba(255,255,255,.08); }
+  .mobile-nav-panel a:last-child { border:0; color:#d8bc8b; }
+  .event-hero { position:relative; min-height:min(900px,100svh); display:grid; align-items:end; overflow:hidden; background:#1a1411; }
+  .event-hero > img,.shade { position:absolute; inset:0; width:100%; height:100%; }
+  .event-hero > img { object-fit:cover; object-position:center; }
+  .shade { background:linear-gradient(180deg,rgba(5,5,5,.16),rgba(5,5,5,.16) 30%,rgba(5,5,5,.88) 100%),linear-gradient(90deg,rgba(5,5,5,.48),transparent 70%); }
+  .hero-copy { position:relative; z-index:2; width:min(100% - 2.2rem,1280px); margin:auto; padding:10rem 0 6.5rem; }
+  .eyebrow { margin:0 0 1.1rem; color:#d8bc8b; font-size:.74rem; font-weight:800; letter-spacing:.24em; }
+  h1 { max-width:1000px; margin:0; font-size:clamp(4rem,9vw,8rem); line-height:.9; letter-spacing:-.06em; text-wrap:balance; }
+  .hero-copy > p:not(.eyebrow) { max-width:700px; margin:1.6rem 0 0; color:rgba(255,255,255,.82); font-size:clamp(1.05rem,1.8vw,1.3rem); line-height:1.7; }
+  .actions { display:flex; flex-wrap:wrap; gap:.75rem; margin-top:2rem; align-items:center; }
+  .button { min-height:48px; display:inline-flex; align-items:center; justify-content:center; padding:.78rem 1.15rem; border-radius:999px; text-decoration:none; font-size:.88rem; font-weight:750; }
+  .light { background:#f3efe7; color:#141311; } .glass { color:#fff; border:1px solid rgba(255,255,255,.32); background:rgba(255,255,255,.08); backdrop-filter:blur(14px); } .outline { color:#f3efe7; border:1px solid rgba(243,239,231,.25); }
+  .shell { width:min(100% - 2.2rem,1280px); margin:auto; }
+  .intro { padding:clamp(5rem,10vw,9rem) 0; display:grid; grid-template-columns:.82fr 1.18fr; gap:clamp(3rem,7vw,7rem); align-items:center; }
+  .intro-copy { max-width:650px; }
+  h2 { margin:0; font-size:clamp(2.8rem,5.8vw,5.8rem); line-height:.97; letter-spacing:-.05em; text-wrap:balance; }
+  .body-copy,.event-cta p:not(.eyebrow) { margin:1.7rem 0 0; color:#bdb7ad; font-size:clamp(1rem,1.4vw,1.15rem); line-height:1.8; max-width:760px; }
+  figure { margin:0; overflow:hidden; }
+  .intro figure { height:min(54vw,620px); }
+  figure img { width:100%; height:100%; display:block; object-fit:cover; }
+  .gallery-section { padding-bottom:clamp(6rem,11vw,10rem); }
+  .gallery-section > h2 { max-width:800px; }
+  .event-gallery { margin-top:3rem; display:grid; grid-template-columns:1.15fr .85fr; gap:.75rem; }
+  .event-gallery figure { height:560px; }
+  .event-gallery .wide { grid-column:span 2; height:min(55vw,660px); }
+  .event-cta { border-top:1px solid rgba(255,255,255,.1); background:#12110f; }
+  .cta-inner { padding:clamp(5rem,10vw,9rem) 0; }
+  .text-link { color:#d8bc8b; text-decoration:none; font-size:.86rem; font-weight:700; margin-left:.4rem; }
+  footer { width:min(100% - 2.2rem,1280px); margin:auto; padding:2.5rem 0 3rem; display:grid; grid-template-columns:1fr auto auto; align-items:center; gap:2rem; color:#928b80; font-size:.72rem; }
+  footer img { width:96px; height:54px; object-fit:contain; }
+  footer p { margin:0; }
+  @media(max-width:900px){ .event-header>nav{display:none}.mobile-nav{display:block}.intro{grid-template-columns:1fr}.intro figure{height:min(80vw,620px)} }
+  @media(max-width:620px){ .event-header,.hero-copy,.shell,footer{width:calc(100% - 1.4rem)} .event-header{padding-top:.8rem}.brand img{width:84px;height:48px}.event-hero{min-height:790px}.hero-copy{padding-bottom:4.5rem} h1{font-size:clamp(3rem,15vw,4.8rem);overflow-wrap:anywhere}.intro{padding:4.5rem 0}.intro figure{height:72vw}.event-gallery{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:.75rem;scrollbar-width:none;padding-bottom:.35rem}.event-gallery::-webkit-scrollbar{display:none}.event-gallery figure,.event-gallery .wide{flex:0 0 88vw;height:520px;grid-column:auto;scroll-snap-align:start}.cta-inner{padding:4.5rem 0}.actions .button{flex:1 1 auto}.text-link{width:100%;margin:.7rem 0 0}footer{grid-template-columns:1fr;gap:.8rem} }
+  @media(prefers-reduced-motion:reduce){.mobile-nav summary span{transition:none}}
+</style>
