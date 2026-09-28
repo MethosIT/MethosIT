@@ -14,4 +14,16 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://thourazpub.it/en/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://thourazpub.it/home/" />
   </url>
+  <url>
+    <loc>https://thourazpub.it/sala-eventi/</loc>
+    <xhtml:link rel="alternate" hreflang="it" href="https://thourazpub.it/sala-eventi/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://thourazpub.it/en/private-events/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://thourazpub.it/sala-eventi/" />
+  </url>
+  <url>
+    <loc>https://thourazpub.it/en/private-events/</loc>
+    <xhtml:link rel="alternate" hreflang="it" href="https://thourazpub.it/sala-eventi/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://thourazpub.it/en/private-events/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://thourazpub.it/sala-eventi/" />
+  </url>
 </urlset>
