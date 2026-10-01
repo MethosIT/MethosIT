@@ -58,3 +58,5 @@ Homepage conversion links use `data-track` attributes for these events: `menu_cl
 The site has optional Umami Cloud support. No analytics script or third-party analytics request is loaded when `PUBLIC_UMAMI_WEBSITE_ID` is unset. To enable analytics later, create the site in Umami and add the repository variable `PUBLIC_UMAMI_WEBSITE_ID`. Optionally set `PUBLIC_UMAMI_SCRIPT_URL` when using a self-hosted Umami instance; otherwise the Cloud script URL is used.
 
 The click handler also supports a future Plausible integration if `window.plausible` is provided, so the page markup does not need to change when switching providers.
+
+<!-- Vercel preview trigger -->
