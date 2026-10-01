@@ -20,7 +20,6 @@ const copy = isIt
       heroTitle: "Ogni cocktail comincia da una conversazione.",
       heroText:
         "Raccontaci cosa ti piace, cosa vuoi scoprire e come vuoi sentirti. Al Thouraz il cocktail nasce insieme a te, con cura, ascolto e ingredienti scelti.",
-      heroMenu: "Scopri i listini",
       heroWhatsapp: "Prenota su WhatsApp",
       statSince: "Dal",
       statHours: "Orario",
@@ -77,7 +76,6 @@ const copy = isIt
       heroTitle: "Every cocktail starts with a conversation.",
       heroText:
         "Tell us what you enjoy, what you want to discover and what kind of mood you are in. At Thouraz, your cocktail is created with you — through care, listening and carefully selected ingredients.",
-      heroMenu: "View the menus",
       heroWhatsapp: "Book on WhatsApp",
       statSince: "Since",
       statHours: "Hours",
@@ -231,8 +229,7 @@ const jsonLd = {
       <h1>{copy.heroTitle}</h1>
       <p class="hero-copy">{copy.heroText}</p>
       <div class="hero-actions">
-        <a class="button button-light" href="/menu/" data-track="menu_click" data-track-location="hero">{copy.heroMenu}</a>
-        <a class="button button-glass" href={site.whatsapp} target="_blank" rel="noopener noreferrer" data-track="whatsapp_click" data-track-location="hero">
+        <a class="button button-light" href={site.whatsapp} target="_blank" rel="noopener noreferrer" data-track="whatsapp_click" data-track-location="hero">
           {copy.heroWhatsapp}
         </a>
       </div>
