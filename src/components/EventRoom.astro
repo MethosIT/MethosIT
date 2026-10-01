@@ -16,23 +16,23 @@ const copy = isIt
       language: "EN",
       languageHref: "/en/private-events/",
       languageAria: "English version",
-      eyebrow: "EVENTI PRIVATI · PIANO SUPERIORE",
-      title: "Uno spazio tutto per voi.",
-      lead: "Al piano superiore del Thouraz, una sala separata dal locale e prenotabile per eventi privati.",
+      eyebrow: "SALA EVENTI · MONTECCHIO PRECALCINO · VICENZA",
+      title: "Sala eventi privata vicino a Vicenza.",
+      lead: "Al piano superiore del Thouraz Pub, a Montecchio Precalcino in provincia di Vicenza, una sala separata dal locale e prenotabile per compleanni, feste private e altri eventi.",
       availability: "Richiedi disponibilità",
       call: "Chiama",
       sectionEyebrow: "LA SALA",
-      sectionTitle: "Il tuo evento, in uno spazio dedicato.",
-      sectionText: "Una sala indipendente al piano superiore, pensata per chi vuole ritrovarsi in uno spazio riservato mantenendo il Thouraz a pochi passi. Raccontaci cosa hai in mente: ti confermeremo disponibilità e dettagli direttamente.",
+      sectionTitle: "Una sala per compleanni, feste private e serate da ricordare.",
+      sectionText: "Uno spazio indipendente al piano superiore, pensato per chi vuole festeggiare in un ambiente riservato mantenendo il Thouraz a pochi passi. Se cerchi una sala per compleanno o una sala per feste private nella zona di Vicenza, raccontaci cosa hai in mente: ti confermeremo disponibilità e dettagli direttamente.",
       galleryEyebrow: "GLI SPAZI",
       galleryTitle: "Scopri la sala.",
       ctaEyebrow: "PARLIAMONE",
-      ctaTitle: "Stai pianificando un evento?",
-      ctaText: "Scrivici su WhatsApp o chiamaci per verificare la disponibilità della sala e raccontarci cosa vorresti organizzare.",
+      ctaTitle: "Cerchi una sala eventi vicino a Vicenza?",
+      ctaText: "Scrivici su WhatsApp o chiamaci per verificare la disponibilità della sala a Montecchio Precalcino e raccontarci cosa vorresti organizzare.",
       whatsapp: "Chiedi su WhatsApp",
       back: "Torna al Thouraz",
       mobileNav: "Apri navigazione",
-      footer: "Sala eventi privata · Thouraz Pub",
+      footer: "Sala eventi privata a Montecchio Precalcino · Vicenza · Thouraz Pub",
     }
   : {
       home: "Home",
@@ -41,23 +41,23 @@ const copy = isIt
       language: "IT",
       languageHref: "/sala-eventi/",
       languageAria: "Versione italiana",
-      eyebrow: "PRIVATE EVENTS · UPSTAIRS",
-      title: "A space just for you.",
-      lead: "Upstairs at Thouraz, a separate room that can be privately reserved for events.",
+      eyebrow: "PRIVATE EVENT ROOM · MONTECCHIO PRECALCINO · VICENZA",
+      title: "A private event room near Vicenza.",
+      lead: "Upstairs at Thouraz Pub in Montecchio Precalcino, in the province of Vicenza, a separate room available for birthdays, private parties and other events.",
       availability: "Check availability",
       call: "Call",
       sectionEyebrow: "THE ROOM",
-      sectionTitle: "Your event, in a dedicated space.",
-      sectionText: "A separate room upstairs for guests looking for a more private setting while keeping the Thouraz close by. Tell us what you have in mind and we will confirm availability and details directly.",
+      sectionTitle: "A room for birthdays, private parties and memorable nights.",
+      sectionText: "A separate upstairs space for guests looking for a more private setting while keeping the Thouraz close by. If you are looking for a birthday or private party venue near Vicenza, tell us what you have in mind and we will confirm availability and details directly.",
       galleryEyebrow: "THE SPACE",
       galleryTitle: "Take a look around.",
       ctaEyebrow: "LET'S TALK",
-      ctaTitle: "Planning an event?",
-      ctaText: "Message us on WhatsApp or call to check availability and tell us what you would like to organise.",
+      ctaTitle: "Looking for a private event room near Vicenza?",
+      ctaText: "Message us on WhatsApp or call to check availability at our Montecchio Precalcino venue and tell us what you would like to organise.",
       whatsapp: "Ask on WhatsApp",
       back: "Back to Thouraz",
       mobileNav: "Open navigation",
-      footer: "Private event room · Thouraz Pub",
+      footer: "Private event room in Montecchio Precalcino · Vicenza · Thouraz Pub",
     };
 
 const homeHref = isIt ? "/home/" : "/en/";
@@ -89,7 +89,7 @@ const eventHref = isIt ? "/sala-eventi/" : "/en/private-events/";
 
 <main id="main-content" tabindex="-1">
   <section class="event-hero">
-    <img src="/images/events/event-hero.webp" alt={isIt ? "Sala eventi del Thouraz Pub" : "Thouraz Pub private event room"} width="2048" height="1151" fetchpriority="high" loading="eager" />
+    <img src="/images/events/event-hero.webp" alt={isIt ? "Sala eventi privata del Thouraz Pub a Montecchio Precalcino, Vicenza" : "Thouraz Pub private event room in Montecchio Precalcino, Vicenza"} width="2048" height="1151" fetchpriority="high" loading="eager" />
     <div class="shade"></div>
     <div class="hero-copy">
       <p class="eyebrow">{copy.eyebrow}</p>
@@ -109,7 +109,7 @@ const eventHref = isIt ? "/sala-eventi/" : "/en/private-events/";
       <p class="body-copy">{copy.sectionText}</p>
     </div>
     <figure>
-      <img src="/images/events/event-daylight.webp" alt={isIt ? "Vista diurna della sala eventi" : "Daytime view of the private event room"} width="2047" height="1152" loading="lazy" />
+      <img src="/images/events/event-daylight.webp" alt={isIt ? "Sala per eventi privati e compleanni al Thouraz Pub" : "Private event and birthday room at Thouraz Pub"} width="2047" height="1152" loading="lazy" />
     </figure>
   </section>
 
@@ -117,9 +117,9 @@ const eventHref = isIt ? "/sala-eventi/" : "/en/private-events/";
     <p class="eyebrow">{copy.galleryEyebrow}</p>
     <h2>{copy.galleryTitle}</h2>
     <div class="event-gallery" role="region" tabindex="0" aria-label={isIt ? "Foto della sala eventi" : "Private event room photos"}>
-      <figure class="wide"><img src="/images/events/event-room.webp" alt={isIt ? "Sala eventi con tavoli e sedute" : "Private event room with tables and seating"} width="2048" height="1151" loading="lazy" /></figure>
-      <figure><img src="/images/events/event-portrait.webp" alt={isIt ? "Dettaglio verticale della sala eventi" : "Vertical view of the private event room"} width="1152" height="2048" loading="lazy" /></figure>
-      <figure><img src="/images/events/event-daylight.webp" alt={isIt ? "Sala eventi illuminata di giorno" : "Private event room in daylight"} width="1200" height="675" loading="lazy" /></figure>
+      <figure class="wide"><img src="/images/events/event-room.webp" alt={isIt ? "Sala eventi privata con tavoli e sedute a Montecchio Precalcino" : "Private event room with tables and seating in Montecchio Precalcino"} width="2048" height="1151" loading="lazy" /></figure>
+      <figure><img src="/images/events/event-portrait.webp" alt={isIt ? "Dettaglio della sala per feste private del Thouraz Pub" : "Detail of the Thouraz Pub private party room"} width="1152" height="2048" loading="lazy" /></figure>
+      <figure><img src="/images/events/event-daylight.webp" alt={isIt ? "Sala eventi del Thouraz Pub illuminata di giorno" : "Thouraz Pub private event room in daylight"} width="1200" height="675" loading="lazy" /></figure>
     </div>
   </section>
 
