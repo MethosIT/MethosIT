@@ -1,0 +1,17 @@
+---
+const canonical = new URL("/", Astro.site);
+---
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, follow" />
+    <meta http-equiv="refresh" content="0;url=/" />
+    <link rel="canonical" href={canonical} />
+    <title>Thouraz Pub</title>
+  </head>
+  <body>
+    <p>La homepage si trova al nuovo indirizzo. <a href="/">Vai al sito del Thouraz Pub</a>.</p>
+  </body>
+</html>
