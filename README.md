@@ -20,11 +20,11 @@ npm run preview
 
 | URL | Purpose |
 | --- | --- |
-| `/` | Existing menu landing; do not replace with the Italian homepage yet |
-| `/home/` | New Italian homepage |
+| `/` | New Italian homepage, ready for indexing after launch |
+| `/home/` | Legacy preview URL; immediate HTML redirect to `/` |
 | `/en/` | English homepage |
-| `/menu/` | Menu entry point |
-| `/listini/` | Permanent physical QR-code destination; renders the menu directly |
+| `/menu/` | Unlisted legacy menu alias, excluded from search with `noindex` |
+| `/listini/` | Permanent physical QR-code destination; renders the menu directly with `noindex` |
 | `/come-funziona.html` | Existing explanation page |
 | `/TESTOrario1.pdf`, `/TESTOrario2.pdf`, `/TESTOrario3.pdf` | Existing public PDF URLs |
 
@@ -48,12 +48,30 @@ The workflow validates pushes to `astro-v1` and `main`, and pull requests. Produ
 
 Only at an explicitly authorized launch: make the reviewed Astro revision available on `main`, change Pages publishing to **GitHub Actions**, keep the existing custom domain and HTTPS settings, then verify production routes and menu PDFs. The website is configured for the custom domain root, not a `/MethosIT/` base path.
 
-Moving the Italian homepage from `/home/` to `/` is a separate future change. Update canonicals, hreflang, sitemap, schema, and homepage links together at that time; keep `/listini/` functional permanently.
+## Local launch preparation (2026-10-20)
+
+The Italian homepage now lives at `/`. Canonicals, hreflang, sitemap, business schema,
+and internal homepage links use the root URL. `/home/` uses an immediate HTML
+meta-refresh redirect with a canonical and a clickable fallback, compatible with
+static GitHub Pages hosting (not an HTTP 301 response).
+
+Public homepage and event-page navigation no longer links to the menus, and business
+schema no longer advertises a menu URL. `/listini/` remains the permanent QR target;
+`/menu/` remains an unlisted compatibility alias. Both serve all four original PDF
+links without JavaScript and carry `noindex, follow`. The legacy explanation page
+also carries `noindex` and its return link goes to `/listini/`.
+
+Keep these menu pages out of the sitemap and allow crawling in `robots.txt` so
+search engines can read `noindex`. This is search exclusion, not access control:
+anyone with the URL can still open or share it.
+
+These are local preparations only. Production deployment and Search Console
+submission remain separate launch steps; verify Pages settings before publishing.
 
 
 ## Conversion tracking (optional, disabled until configured)
 
-Homepage conversion links use `data-track` attributes for these events: `menu_click`, `whatsapp_click`, `call_click`, `maps_click`, `instagram_click`, `google_reviews_click`, `google_review_write_click`, and `language_switch`. The event payload also includes the CTA location and current language.
+Homepage conversion links use `data-track` attributes for these events: `whatsapp_click`, `call_click`, `maps_click`, `instagram_click`, `google_reviews_click`, `google_review_write_click`, and `language_switch`. The event payload also includes the CTA location and current language.
 
 The site has optional Umami Cloud support. No analytics script or third-party analytics request is loaded when `PUBLIC_UMAMI_WEBSITE_ID` is unset. To enable analytics later, create the site in Umami and add the repository variable `PUBLIC_UMAMI_WEBSITE_ID`. Optionally set `PUBLIC_UMAMI_SCRIPT_URL` when using a self-hosted Umami instance; otherwise the Cloud script URL is used.
 

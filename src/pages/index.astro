@@ -1,12 +1,14 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import MenuLanding from "../components/MenuLanding.astro";
+import SiteHome from "../components/SiteHome.astro";
 ---
 
 <BaseLayout
-  title="Listini | Thouraz Pub"
-  description="Consulta i listini del Thouraz Pub in base all'orario di ingresso."
-  noindex={true}
+  title="Thouraz Pub | Cocktail su misura e gelato artigianale"
+  description="Dal 1987 a Montecchio Precalcino: cocktail creati insieme al cliente, gelato artigianale senza glutine e lattosio, lounge e terrazza. Aperto ogni sera 20:00–04:00."
+  lang="it"
+  alternateIt="/"
+  alternateEn="/en/"
 >
-  <MenuLanding />
+  <SiteHome lang="it" />
 </BaseLayout>

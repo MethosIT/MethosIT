@@ -15,7 +15,6 @@ const copy = isIt
       navReviews: "Recensioni",
       navVisit: "Dove siamo",
       navEvents: "Sala eventi",
-      menu: "Menu",
       heroEyebrow: "DAL 1987 · MONTECCHIO PRECALCINO",
       heroTitle: "Ogni cocktail comincia da una conversazione.",
       heroText:
@@ -71,7 +70,6 @@ const copy = isIt
       navReviews: "Reviews",
       navVisit: "Visit us",
       navEvents: "Private events",
-      menu: "Menu",
       heroEyebrow: "SINCE 1987 · MONTECCHIO PRECALCINO",
       heroTitle: "Every cocktail starts with a conversation.",
       heroText:
@@ -118,7 +116,7 @@ const copy = isIt
       mobileCtaLabel: "Quick actions",
       footer: "Made-to-measure cocktails · Artisan gelato · Since 1987",
       languageLabel: "IT",
-      languageHref: "/home/",
+      languageHref: "/",
       languageAria: "Versione italiana",
     };
 
@@ -139,7 +137,7 @@ const jsonLd = {
   "@type": "BarOrPub",
   name: site.name,
   "@id": "https://thourazpub.it/#thouraz-pub",
-  url: "https://thourazpub.it/home/",
+  url: "https://thourazpub.it/",
   foundingDate: String(site.founded),
   telephone: site.phoneDisplay,
   email: site.email,
@@ -168,7 +166,6 @@ const jsonLd = {
     addressRegion: site.address.province,
     addressCountry: site.address.country,
   },
-  hasMenu: "https://thourazpub.it/menu/",
   sameAs: [site.instagram],
 };
 ---
@@ -176,7 +173,7 @@ const jsonLd = {
 <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 
 <header class="topbar">
-  <a class="brand" href={isIt ? "/home/" : "/en/"} aria-label="Thouraz Pub">
+  <a class="brand" href={isIt ? "/" : "/en/"} aria-label="Thouraz Pub">
     <img src="/images/logo.webp" alt="Thouraz Pub" width="660" height="274" />
   </a>
 
@@ -186,7 +183,6 @@ const jsonLd = {
     <a href="#reviews">{copy.navReviews}</a>
     <a href="#visit">{copy.navVisit}</a>
     <a href={isIt ? "/sala-eventi/" : "/en/private-events/"} data-track="private_events_click" data-track-location="header">{copy.navEvents}</a>
-    <a class="menu-pill" href="/menu/" data-track="menu_click" data-track-location="header">{copy.menu}</a>
     <a class="language" href={copy.languageHref} lang={isIt ? "en" : "it"} hreflang={isIt ? "en" : "it"} aria-label={copy.languageAria} data-track="language_switch" data-track-location="header">
       {copy.languageLabel}
     </a>
@@ -204,7 +200,6 @@ const jsonLd = {
       <a href="#reviews">{copy.navReviews}</a>
       <a href="#visit">{copy.navVisit}</a>
       <a href={isIt ? "/sala-eventi/" : "/en/private-events/"} data-track="private_events_click" data-track-location="mobile_nav">{copy.navEvents}</a>
-      <a href="/menu/" data-track="menu_click" data-track-location="mobile_nav">{copy.menu}</a>
       <a href={copy.languageHref} lang={isIt ? "en" : "it"} hreflang={isIt ? "en" : "it"} data-track="language_switch" data-track-location="mobile_nav">
         {isIt ? "English" : "Italiano"}
       </a>
@@ -438,7 +433,7 @@ const jsonLd = {
 </script>
 
 <footer>
-  <a class="footer-brand" href={isIt ? "/home/" : "/en/"} aria-label="Thouraz Pub">
+  <a class="footer-brand" href={isIt ? "/" : "/en/"} aria-label="Thouraz Pub">
     <img src="/images/logo.webp" alt="Thouraz Pub" width="660" height="274" loading="lazy" decoding="async" />
   </a>
   <p>{copy.footer}</p>
@@ -505,7 +500,6 @@ const jsonLd = {
     color: #fff;
   }
 
-  .menu-pill,
   .language {
     border: 1px solid rgba(255,255,255,.28);
     border-radius: 999px;

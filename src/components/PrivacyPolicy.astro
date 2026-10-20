@@ -4,7 +4,7 @@ import { site } from "../data/site";
 interface Props { lang: "it" | "en"; }
 const { lang } = Astro.props;
 const isIt = lang === "it";
-const homeHref = isIt ? "/home/" : "/en/";
+const homeHref = isIt ? "/" : "/en/";
 const altHref = isIt ? "/en/privacy/" : "/privacy/";
 ---
 

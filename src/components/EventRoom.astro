@@ -12,7 +12,6 @@ const copy = isIt
   ? {
       home: "Home",
       events: "Sala eventi",
-      menu: "Menu",
       language: "EN",
       languageHref: "/en/private-events/",
       languageAria: "English version",
@@ -37,7 +36,6 @@ const copy = isIt
   : {
       home: "Home",
       events: "Private events",
-      menu: "Menu",
       language: "IT",
       languageHref: "/sala-eventi/",
       languageAria: "Versione italiana",
@@ -60,7 +58,7 @@ const copy = isIt
       footer: "Private event room in Montecchio Precalcino · Vicenza · Thouraz Pub",
     };
 
-const homeHref = isIt ? "/home/" : "/en/";
+const homeHref = isIt ? "/" : "/en/";
 const eventHref = isIt ? "/sala-eventi/" : "/en/private-events/";
 ---
 
@@ -72,7 +70,6 @@ const eventHref = isIt ? "/sala-eventi/" : "/en/private-events/";
   <nav aria-label={isIt ? "Navigazione principale" : "Main navigation"}>
     <a href={homeHref}>{copy.home}</a>
     <a class="active" href={eventHref}>{copy.events}</a>
-    <a href="/menu/" data-track="menu_click" data-track-location="events_header">{copy.menu}</a>
     <a class="language" href={copy.languageHref} lang={isIt ? "en" : "it"} hreflang={isIt ? "en" : "it"} aria-label={copy.languageAria}>{copy.language}</a>
   </nav>
 
@@ -81,7 +78,6 @@ const eventHref = isIt ? "/sala-eventi/" : "/en/private-events/";
     <div class="mobile-nav-panel">
       <a href={homeHref}>{copy.home}</a>
       <a href={eventHref}>{copy.events}</a>
-      <a href="/menu/" data-track="menu_click" data-track-location="events_mobile_nav">{copy.menu}</a>
       <a href={copy.languageHref} lang={isIt ? "en" : "it"} hreflang={isIt ? "en" : "it"}>{isIt ? "English" : "Italiano"}</a>
     </div>
   </details>

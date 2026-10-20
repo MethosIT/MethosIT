@@ -12,7 +12,7 @@ const menuIds = [
   '1u6ZBHdsba8s25tFmrd4q3hnHbIrCjOqE',
 ];
 
-for (const route of ['index.html', 'menu/index.html', 'listini/index.html']) {
+for (const route of ['menu/index.html', 'listini/index.html']) {
   test(`${route} keeps the four direct menu links usable without JavaScript or an iframe`, () => {
     const html = read(route);
     assert.equal((html.match(/class="menu-button"/g) || []).length, 4);
@@ -23,15 +23,15 @@ for (const route of ['index.html', 'menu/index.html', 'listini/index.html']) {
   });
 }
 
-for (const route of ['home', 'en']) {
+for (const route of ['', 'en/']) {
   test(`${route} has consistent bilingual metadata and valid business data`, () => {
-    const html = read(`${route}/index.html`);
-    assert.match(html, new RegExp(`<html lang="${route === 'en' ? 'en' : 'it'}"`));
+    const html = read(`${route}index.html`);
+    assert.match(html, new RegExp(`<html lang="${route === 'en/' ? 'en' : 'it'}"`));
     assert.equal((html.match(/<h1\b/g) || []).length, 1);
-    assert.ok(html.includes(`rel="canonical" href="https://thourazpub.it/${route}/"`));
-    assert.ok(html.includes(`property="og:url" content="https://thourazpub.it/${route}/"`));
-    for (const [lang, path] of [['it','home'],['en','en'],['x-default','home']]) {
-      assert.ok(html.includes(`hreflang="${lang}" href="https://thourazpub.it/${path}/"`));
+    assert.ok(html.includes(`rel="canonical" href="https://thourazpub.it/${route}"`));
+    assert.ok(html.includes(`property="og:url" content="https://thourazpub.it/${route}"`));
+    for (const [lang, path] of [['it',''],['en','en/'],['x-default','']]) {
+      assert.ok(html.includes(`hreflang="${lang}" href="https://thourazpub.it/${path}"`));
     }
     assert.doesNotMatch(html, /name="robots" content="noindex/);
     assert.ok(html.includes('/fonts/montserrat-latin-variable.woff2'));
@@ -39,8 +39,8 @@ for (const route of ['home', 'en']) {
     assert.ok(existsSync(resolve(dist, 'fonts/montserrat-latin-variable.woff2')));
     const schema = JSON.parse(html.match(/<script type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/)[1]);
     assert.equal(schema['@type'], 'BarOrPub');
-    assert.equal(schema.url, 'https://thourazpub.it/home/');
-    assert.equal(schema.hasMenu, 'https://thourazpub.it/menu/');
+    assert.equal(schema.url, 'https://thourazpub.it/');
+    assert.equal(schema.hasMenu, undefined);
     assert.equal(schema.openingHoursSpecification[0].closes, '04:00');
     assert.equal(schema.openingHoursSpecification[0].dayOfWeek.length, 7);
     const whatsapp = new URL(html.match(/href="(https:\/\/wa.me\/[^\"]+)"/)[1].replaceAll('&amp;', '&'));
@@ -65,10 +65,40 @@ test('legacy public URLs and custom domain survive the Astro build', () => {
 
 test('sitemap and robots support indexing the homepages and reading menu noindex', () => {
   const sitemap = read('sitemap.xml');
-  assert.match(sitemap, /<loc>https:\/\/thourazpub.it\/home\/<\/loc>/);
+  assert.match(sitemap, /<loc>https:\/\/thourazpub.it\/<\/loc>/);
   assert.match(sitemap, /<loc>https:\/\/thourazpub.it\/en\/<\/loc>/);
   assert.doesNotMatch(sitemap, /<loc>[^<]*\/(menu|listini)/);
   const robots = read('robots.txt');
   assert.doesNotMatch(robots, /^Disallow:\s*\/(menu|listini)/m);
   assert.match(robots, /Sitemap: https:\/\/thourazpub.it\/sitemap.xml/);
+});
+
+
+test('the old homepage address redirects to the public homepage without JavaScript', () => {
+  const html = read('home/index.html');
+  assert.match(html, /http-equiv="refresh" content="0;url=\/"/);
+  assert.ok(html.includes('rel="canonical" href="https://thourazpub.it/"'));
+  assert.match(html, /<a href="\/">/);
+  assert.match(html, /name="robots" content="noindex/);
+});
+
+test('public pages do not expose QR menus or obsolete homepage links', () => {
+  for (const page of ['index.html', 'en/index.html', 'sala-eventi/index.html',
+    'en/private-events/index.html', 'privacy/index.html', 'en/privacy/index.html']) {
+    const html = read(page);
+    assert.doesNotMatch(html, /(?:href|content)="(?:https:\/\/thourazpub\.it)?\/(?:menu|listini|home)(?:\/|\.html|")/, page);
+    for (const id of menuIds) assert.ok(!html.includes(id), page);
+    assert.doesNotMatch(html, /"hasMenu"\s*:/, page);
+  }
+  const sitemap = read('sitemap.xml');
+  assert.doesNotMatch(sitemap, /\/(?:home|menu|listini)\//);
+});
+
+test('QR visitors and legacy explanation links retain working navigation', () => {
+  for (const page of ['listini/index.html', 'menu/index.html']) {
+    assert.match(read(page), /class="site-link" href="\/"/);
+  }
+  const explanation = read('come-funziona.html');
+  assert.match(explanation, /href="\/listini\/"/);
+  assert.match(explanation, /name="robots" content="noindex/);
 });
