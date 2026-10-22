@@ -121,3 +121,18 @@ test('site pages expose a crawlable square brand icon and browser fallback', () 
   assert.ok(ico.readUInt16LE(4) >= 1);
   assert.ok(existsSync(resolve(dist, 'apple-touch-icon.png')));
 });
+
+test('both homepage languages identify the same named website to search engines', () => {
+  for (const page of ['index.html', 'en/index.html']) {
+    const html = read(page);
+    const entities = [...html.matchAll(/<script type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g)].map(match => JSON.parse(match[1]));
+    const websites = entities.filter(entity => entity['@type'] === 'WebSite');
+    assert.equal(websites.length, 1, `Missing or duplicate website identity on ${page}`);
+    const website = websites[0];
+    assert.equal(website.name, 'Thouraz Pub');
+    assert.equal(website.url, 'https://thourazpub.it/');
+    assert.equal(website['@id'], 'https://thourazpub.it/#website');
+    assert.equal(website.publisher['@id'], entities.find(entity => entity['@type'] === 'BarOrPub')['@id']);
+    assert.ok(html.includes('property="og:site_name" content="Thouraz Pub"'));
+  }
+});
