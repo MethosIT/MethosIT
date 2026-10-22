@@ -168,9 +168,20 @@ const jsonLd = {
   },
   sameAs: [site.instagram],
 };
+const websiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": "https://thourazpub.it/#website",
+  name: site.name,
+  alternateName: "Thouraz",
+  url: "https://thourazpub.it/",
+  inLanguage: ["it", "en"],
+  publisher: { "@id": "https://thourazpub.it/#thouraz-pub" },
+};
 ---
 
 <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+<script type="application/ld+json" set:html={JSON.stringify(websiteJsonLd)} />
 
 <header class="topbar">
   <a class="brand" href={isIt ? "/" : "/en/"} aria-label="Thouraz Pub">
