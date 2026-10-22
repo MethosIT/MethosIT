@@ -102,3 +102,22 @@ test('QR visitors and legacy explanation links retain working navigation', () =>
   assert.match(explanation, /href="\/listini\/"/);
   assert.match(explanation, /name="robots" content="noindex/);
 });
+
+test('site pages expose a crawlable square brand icon and browser fallback', () => {
+  for (const page of ['index.html', 'en/index.html', 'sala-eventi/index.html', 'en/private-events/index.html', 'listini/index.html']) {
+    const html = read(page);
+    const icon = html.match(/<link\b[^>]*rel="icon"[^>]*type="image\/png"[^>]*>/)?.[0];
+    assert.ok(icon, `Missing PNG favicon on ${page}`);
+    const href = icon.match(/href="([^"]+)"/)[1];
+    const png = readFileSync(resolve(dist, `.${href}`));
+    assert.equal(png.subarray(1, 4).toString(), 'PNG');
+    assert.equal(png.readUInt32BE(16), png.readUInt32BE(20));
+    assert.ok(png.readUInt32BE(16) >= 96);
+    assert.ok(html.includes('href="/favicon.ico"'));
+    assert.ok(html.includes('rel="apple-touch-icon"'));
+  }
+  const ico = readFileSync(resolve(dist, 'favicon.ico'));
+  assert.equal(ico.readUInt16LE(2), 1);
+  assert.ok(ico.readUInt16LE(4) >= 1);
+  assert.ok(existsSync(resolve(dist, 'apple-touch-icon.png')));
+});
